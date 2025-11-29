@@ -2,6 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Header } from "@/components/layout/Header";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { MobileHeader } from "@/components/layout/MobileHeader";
+import { MobileKPIStrip } from "@/components/dashboard/MobileKPIStrip";
+import { MobileProgressCard } from "@/components/dashboard/MobileProgressCard";
+import { MobileAICoach } from "@/components/dashboard/MobileAICoach";
+import { MobileEMIList } from "@/components/dashboard/MobileEMIList";
+import { MiniChart } from "@/components/dashboard/MiniChart";
 import { KPICard } from "@/components/dashboard/KPICard";
 import { AICoachCard } from "@/components/dashboard/AICoachCard";
 import { XPLevelCard } from "@/components/dashboard/XPLevelCard";
@@ -9,6 +16,7 @@ import { IncomeExpenseChart } from "@/components/dashboard/IncomeExpenseChart";
 import { EMIList } from "@/components/dashboard/EMIList";
 import { PayoffTimeline } from "@/components/dashboard/PayoffTimeline";
 import { ProgressRing } from "@/components/dashboard/ProgressRing";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Wallet,
   TrendingDown,
@@ -103,7 +111,28 @@ const recommendations = [
 
 export default function Index() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const isMobile = useIsMobile();
 
+  // Mobile Layout
+  if (isMobile) {
+    return (
+      <div className="min-h-screen bg-background pb-20">
+        <MobileHeader />
+        
+        <div className="space-y-3 pt-2">
+          <MobileKPIStrip />
+          <MobileProgressCard debtProgress={68} streak={23} level={12} />
+          <MobileAICoach />
+          <MiniChart />
+          <MobileEMIList />
+        </div>
+
+        <BottomNav />
+      </div>
+    );
+  }
+
+  // Desktop Layout
   return (
     <div className="min-h-screen bg-background">
       <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
