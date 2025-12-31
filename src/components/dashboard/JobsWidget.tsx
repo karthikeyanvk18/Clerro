@@ -14,10 +14,10 @@ export function JobsWidget() {
 
   if (!recommendedJobs || recommendedJobs.length === 0) {
     return (
-      <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-transparent">
+      <Card className="border-primary/20 bg-card">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-blue-600" />
+            <Briefcase className="w-5 h-5 text-primary" />
             Recommended Jobs
           </CardTitle>
           <CardDescription>
@@ -29,15 +29,15 @@ export function JobsWidget() {
   }
 
   return (
-    <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-transparent">
+    <Card className="border-primary/20 bg-card dark:bg-[rgb(4,35,51)]">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Briefcase className="w-5 h-5 text-blue-600" />
+            <Briefcase className="w-5 h-5 text-primary" />
             <CardTitle>Recommended Jobs</CardTitle>
           </div>
           <Link to="/jobs">
-            <Button variant="ghost" size="sm" className="text-blue-600">
+            <Button variant="ghost" size="sm" className="text-primary">
               View All
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
@@ -54,26 +54,26 @@ export function JobsWidget() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="p-4 rounded-lg border border-blue-100 bg-white/50 hover:bg-white hover:border-blue-200 transition-all"
+            className="p-4 rounded-lg border bg-card/50 hover:bg-card/80 transition-all border-primary/10 hover:border-primary/20 dark:bg-[rgb(6,43,63)]"
           >
             <div className="flex items-start justify-between gap-3 mb-2">
               <div className="flex-1 min-w-0">
-                <h4 className="font-semibold text-sm text-gray-900 truncate">
+                <h4 className="font-semibold text-sm text-foreground truncate">
                   {job.title}
                 </h4>
-                <p className="text-xs text-gray-600 truncate">{job.company}</p>
+                <p className="text-xs text-muted-foreground truncate">{job.company}</p>
               </div>
               <Badge variant="outline" className="text-xs">
                 {job.type}
               </Badge>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-gray-600 mb-3">
+            <div className="flex items-center gap-4 text-xs text-muted-foreground mb-3">
               <div className="flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
                 <span className="truncate">{job.location}</span>
               </div>
-              <span className="text-blue-600 font-medium">{job.salary}</span>
+              <span className="text-primary font-medium">{job.salary}</span>
             </div>
 
             <div className="flex items-center justify-between">
@@ -100,14 +100,14 @@ export function JobsWidget() {
                   <Bookmark
                     className={`w-4 h-4 ${
                       isJobSaved(job.id)
-                        ? "fill-blue-600 text-blue-600"
-                        : "text-gray-400"
+                        ? "fill-primary text-primary"
+                        : "text-muted-foreground"
                     }`}
                   />
                 </Button>
                 <Button
                   size="sm"
-                  className="h-8 px-3 text-xs bg-blue-600 hover:bg-blue-700"
+                  className="h-8 px-3 text-xs"
                   onClick={() => applyForJob(job.id)}
                 >
                   Apply
@@ -120,7 +120,7 @@ export function JobsWidget() {
         <Link to="/jobs" className="block pt-2">
           <Button
             variant="outline"
-            className="w-full text-blue-600 border-blue-200 hover:bg-blue-50"
+            className="w-full text-primary border-primary/20 hover:bg-primary/10"
           >
             View All {filteredJobs.length} Jobs
             <ArrowRight className="w-4 h-4 ml-2" />

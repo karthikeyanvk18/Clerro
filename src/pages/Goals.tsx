@@ -12,6 +12,7 @@ import { Plus, Target, TrendingUp, Award, CheckCircle2, AlertCircle } from "luci
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { goalStatusColors, getBadgeColor } from "@/lib/colors";
 
 // Financial Goals Data
 const financialGoals = [
@@ -141,16 +142,7 @@ export default function Goals() {
   const [selectedPriority, setSelectedPriority] = useState<string>("all");
 
   const getStatusColor = (status: string) => {
-    switch (status) {
-      case "completed":
-        return "bg-green-100 text-green-800";
-      case "on_track":
-        return "bg-blue-100 text-blue-800";
-      case "at_risk":
-        return "bg-red-100 text-red-800";
-      default:
-        return "bg-yellow-100 text-yellow-800";
-    }
+    return getBadgeColor(status, goalStatusColors);
   };
 
   const getPriorityColor = (priority: string) => {
@@ -214,12 +206,12 @@ export default function Goals() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onMenuToggle={() => toggleSidebar()} />
+      <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div

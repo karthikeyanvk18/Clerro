@@ -29,7 +29,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 interface NavItem {
   icon: React.ElementType;
@@ -38,35 +38,67 @@ interface NavItem {
   badge?: string;
 }
 
-const mainNavItems: NavItem[] = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: Bot, label: "AI Coach", href: "/coach", badge: "3" },
-  { icon: CreditCard, label: "Debts", href: "/debts" },
-  { icon: Wallet, label: "Income", href: "/income" },
-  { icon: TrendingUp, label: "Expenses", href: "/expenses" },
-  { icon: BarChart3, label: "EMI & Loans", href: "/emi-loans" },
-  { icon: PieChart, label: "Budget", href: "/budget-expenses" },
-  { icon: Target, label: "Goals", href: "/goals" },
-  { icon: Briefcase, label: "Jobs", href: "/jobs" },
-  // New Features
-  { icon: Building2, label: "Bank Connect", href: "/bank-sync" },
-  { icon: Brain, label: "AI Advice", href: "/ai-advice" },
-  { icon: TrendingUp, label: "Investments", href: "/investments" },
-  { icon: DollarSign, label: "Bills", href: "/bills" },
-  { icon: FileText, label: "Resume", href: "/resume" },
-  { icon: Zap, label: "Skills", href: "/skills" },
-  { icon: Briefcase, label: "Interviews", href: "/interviews" },
-  // Advanced Features
-  { icon: Trophy, label: "Rewards", href: "/gamification" },
-  { icon: Shield, label: "Data Vault", href: "/vault" },
-  { icon: ShoppingCart, label: "Marketplace", href: "/marketplace" },
+interface NavSection {
+  title?: string;
+  items: NavItem[];
+}
+
+const mainNavItems: NavSection[] = [
+  {
+    items: [
+      { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+      { icon: Bot, label: "AI Coach", href: "/coach", badge: "3" },
+    ],
+  },
+  {
+    title: "💰 Money Management",
+    items: [
+      { icon: Wallet, label: "Income", href: "/income" },
+      { icon: TrendingUp, label: "Expenses", href: "/expenses" },
+      { icon: PieChart, label: "Budget", href: "/budget-expenses" },
+      { icon: CreditCard, label: "Debts", href: "/debts" },
+      { icon: BarChart3, label: "EMI & Loans", href: "/emi-loans" },
+      { icon: DollarSign, label: "Bills", href: "/bills" },
+    ],
+  },
+  {
+    title: "📈 Growth & Planning",
+    items: [
+      { icon: Target, label: "Goals", href: "/goals" },
+      { icon: TrendingUp, label: "Investments", href: "/investments" },
+    ],
+  },
+  {
+    title: "💼 Career & Skills",
+    items: [
+      { icon: Briefcase, label: "Jobs", href: "/jobs" },
+      { icon: FileText, label: "Resume", href: "/resume" },
+      { icon: Zap, label: "Skills", href: "/skills" },
+      { icon: Briefcase, label: "Interviews", href: "/interviews" },
+    ],
+  },
+  {
+    title: "🧠 AI & Banking",
+    items: [
+      { icon: Brain, label: "AI Advice", href: "/ai-advice" },
+      { icon: Building2, label: "Bank Connect", href: "/bank-sync" },
+    ],
+  },
+  {
+    title: "🗄️ Utilities",
+    items: [
+      { icon: Trophy, label: "Rewards", href: "/gamification" },
+      { icon: Shield, label: "Data Vault", href: "/vault" },
+      { icon: ShoppingCart, label: "Marketplace", href: "/marketplace" },
+    ],
+  },
 ];
 
 const premiumNavItems: NavItem[] = [
   { icon: Zap, label: "Upgrade Pro", href: "/premium" },
   { icon: FileText, label: "Reports", href: "/reports" },
-  { icon: Share2, label: "Referrals", href: "/referral" },
   { icon: Zap, label: "Integrations", href: "/integrations" },
+  { icon: Share2, label: "Referrals", href: "/referral" },
 ];
 
 const bottomNavItems: NavItem[] = [];
@@ -151,31 +183,42 @@ export function Sidebar({ isOpen = true, onClose, className }: SidebarProps) {
               Menu
             </span>
           </div>
-          {mainNavItems.map((item) => (
-            <NavButton
-              key={item.href}
-              item={item}
-              isCollapsed={isCollapsed}
-            />
-          ))}
-
-          {/* Premium Section */}
-          {!isCollapsed && (
-            <>
-              <div className="my-4 px-3 py-2">
-                <span className="text-caption font-medium uppercase tracking-wider text-muted-foreground">
-                  Premium
-                </span>
-              </div>
-              {premiumNavItems.map((item) => (
+          {mainNavItems.map((section, sectionIdx) => (
+            <div key={sectionIdx}>
+              {section.title && !isCollapsed && (
+                <div className="mt-4 mb-2 px-3">
+                  <span className="text-caption font-medium text-muted-foreground">
+                    {section.title}
+                  </span>
+                </div>
+              )}
+              {section.items.map((item) => (
                 <NavButton
                   key={item.href}
                   item={item}
                   isCollapsed={isCollapsed}
                 />
               ))}
-            </>
-          )}
+            </div>
+          ))}
+
+          {/* Premium Section */}
+          <>
+            {!isCollapsed && (
+              <div className="my-4 px-3 py-2">
+                <span className="text-caption font-medium uppercase tracking-wider text-muted-foreground">
+                  Premium
+                </span>
+              </div>
+            )}
+            {premiumNavItems.map((item) => (
+              <NavButton
+                key={item.href}
+                item={item}
+                isCollapsed={isCollapsed}
+              />
+            ))}
+          </>
         </nav>
 
         {/* Bottom Nav */}
@@ -191,22 +234,23 @@ export function Sidebar({ isOpen = true, onClose, className }: SidebarProps) {
 
         {/* Upgrade Card */}
         {!isCollapsed && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="m-3 rounded-xl bg-gradient-to-br from-navy to-slate p-4 cursor-pointer hover:shadow-lg transition-all"
-            onClick={() => window.location.href = '/premium'}
-          >
-            <p className="text-body-sm font-semibold text-primary-foreground mb-1">
-              Upgrade to Pro
-            </p>
-            <p className="text-caption text-primary-foreground/80 mb-3">
-              Unlock all AI features
-            </p>
-            <Button variant="gold" size="sm" className="w-full">
-              Upgrade Now
-            </Button>
-          </motion.div>
+          <Link to="/premium">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="m-3 rounded-xl bg-gradient-to-br from-navy to-slate p-4 cursor-pointer hover:shadow-lg transition-all"
+            >
+              <p className="text-body-sm font-semibold text-primary-foreground mb-1">
+                Upgrade to Pro
+              </p>
+              <p className="text-caption text-primary-foreground/80 mb-3">
+                Unlock all AI features
+              </p>
+              <Button variant="gold" size="sm" className="w-full">
+                Upgrade Now
+              </Button>
+            </motion.div>
+          </Link>
         )}
       </motion.aside>
     </>
@@ -226,8 +270,8 @@ function NavButton({
 
   return (
     <div className="group relative">
-      <a
-        href={item.href}
+      <Link
+        to={item.href}
         className={cn(
           "flex items-center gap-3 rounded-xl px-3 py-2.5 text-body-sm font-medium transition-colors",
           isCollapsed ? "flex-col py-3" : "",
@@ -259,7 +303,7 @@ function NavButton({
             {item.label}
           </span>
         )}
-      </a>
+      </Link>
     </div>
   );
 }

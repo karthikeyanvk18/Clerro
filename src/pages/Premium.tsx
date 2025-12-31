@@ -1,510 +1,354 @@
 import { motion } from "framer-motion";
-import {
-  Check,
-  X,
-  Star,
-  Zap,
-  Download,
-  TrendingUp,
-  Calculator,
-  Share2,
-  Shield,
-  ChevronRight,
-  ArrowRight,
-} from "lucide-react";
+import { Header } from "@/components/layout/Header";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { MobileHeader } from "@/components/layout/MobileHeader";
+import { useSidebar } from "@/contexts/SidebarContext";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
-interface PricingPlan {
-  name: string;
-  price: number;
-  period: string;
-  description: string;
-  badge?: string;
-  features: Array<{ text: string; included: boolean }>;
-  icon: React.ElementType;
-}
-
-const pricingPlans: PricingPlan[] = [
-  {
-    name: "Starter",
-    price: 0,
-    period: "Forever",
-    description: "Perfect for getting started",
-    features: [
-      { text: "2-3 Accounts", included: true },
-      { text: "Basic tracking", included: true },
-      { text: "Monthly reports", included: true },
-      { text: "Email support", included: false },
-      { text: "Advanced AI insights", included: false },
-      { text: "Unlimited exports", included: false },
-      { text: "Priority support", included: false },
-      { text: "Scenario planning", included: false },
-    ],
-    icon: Star,
-  },
-  {
-    name: "Pro",
-    price: 99,
-    period: "month",
-    description: "For serious debt fighters",
-    badge: "Most Popular",
-    features: [
-      { text: "Unlimited Accounts", included: true },
-      { text: "Advanced tracking", included: true },
-      { text: "Daily reports", included: true },
-      { text: "Priority email support", included: true },
-      { text: "Advanced AI insights", included: true },
-      { text: "CSV/PDF exports", included: true },
-      { text: "24/7 support", included: false },
-      { text: "Scenario planning", included: true },
-    ],
-    icon: Zap,
-  },
-  {
-    name: "Elite",
-    price: 199,
-    period: "month",
-    description: "Maximum power & support",
-    features: [
-      { text: "Unlimited Accounts", included: true },
-      { text: "Real-time tracking", included: true },
-      { text: "Hourly reports", included: true },
-      { text: "Priority phone support", included: true },
-      { text: "Personal AI coach", included: true },
-      { text: "All exports + custom", included: true },
-      { text: "24/7 priority support", included: true },
-      { text: "Advanced scenario planning", included: true },
-    ],
-    icon: Shield,
-  },
-];
-
-const premiumFeatures = [
-  {
-    icon: Download,
-    title: "CSV & PDF Reports",
-    description: "Download all your financial reports for tax filing and bank submissions",
-  },
-  {
-    icon: TrendingUp,
-    title: "Advanced AI Insights",
-    description: "Personalized strategies based on your spending and debt patterns",
-  },
-  {
-    icon: Calculator,
-    title: "Scenario Planner",
-    description: "Run what-if simulations: extra payments vs savings for investments",
-  },
-  {
-    icon: Share2,
-    title: "Multi-Currency Support",
-    description: "Track debts and income across multiple currencies seamlessly",
-  },
-  {
-    icon: Zap,
-    title: "Unlimited Accounts",
-    description: "Manage unlimited personal, joint, and business accounts",
-  },
-  {
-    icon: Star,
-    title: "Priority Support",
-    description: "Get help from our team 24/7 via email, chat, and phone",
-  },
-];
+import { badgeColors } from "@/lib/colors";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Progress } from "@/components/ui/progress";
+import {
+  Crown,
+  TrendingUp,
+  Zap,
+  CheckCircle,
+  AlertCircle,
+  ArrowUpRight,
+  ArrowDownRight,
+  Star,
+  MoreVertical,
+  Gauge,
+  DollarSign,
+  Gift,
+  Lock,
+} from "lucide-react";
 
 export default function Premium() {
-  const navigate = useNavigate();
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
-  const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<"razorpay" | "stripe">("razorpay");
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const { isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useSidebar();
+  const isMobile = useIsMobile();
 
-  const handleUpgrade = (planName: string) => {
-    setSelectedPlan(planName);
-    setShowPaymentModal(true);
-  };
+  if (isMobile) {
+    return (
+      <div className="min-h-screen bg-background pb-20">
+        <MobileHeader />
+        <div className="space-y-4 p-4">
+          <h1 className="text-2xl font-bold">Premium Membership</h1>
 
-  const handlePayment = (gateway: "razorpay" | "stripe") => {
-    // In a real app, this would initiate payment with the gateway
-    console.log(`Processing payment with ${gateway} for ${selectedPlan} plan`);
-    // Simulate payment processing
-    setTimeout(() => {
-      alert(`✅ Payment successful! Upgrade to ${selectedPlan} plan activated.`);
-      setShowPaymentModal(false);
-      setSelectedPlan(null);
-    }, 1500);
-  };
+          {/* Premium Benefits */}
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold">Your Benefits</h3>
+            {[
+              { title: "Priority Support", desc: "24/7 dedicated support" },
+              { title: "Advanced Analytics", desc: "Detailed financial insights" },
+            ].map((benefit, i) => (
+              <Card key={i}>
+                <CardContent className="pt-3">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="text-sm font-semibold mb-1">{benefit.title}</p>
+                      <p className="text-xs text-muted-foreground">{benefit.desc}</p>
+                    </div>
+                    <CheckCircle className="w-5 h-5 text-primary" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-navy/5 pb-20 lg:pb-8">
-      {/* Header */}
-      <div className="border-b bg-background/50 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container max-w-7xl mx-auto px-4 py-4 lg:py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-h2 font-bold">Upgrade to Pro</h1>
-              <p className="text-muted-foreground mt-1">
-                Unlock advanced features and take control of your finances
-              </p>
-            </div>
-            <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
-              <ChevronRight className="h-5 w-5" />
-            </Button>
+          {/* Plans */}
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold">Choose Your Plan</h3>
+            <Button className="w-full">Upgrade Now</Button>
           </div>
         </div>
+        <BottomNav />
       </div>
+    );
+  }
 
-      <div className="container max-w-7xl mx-auto px-4 py-8 lg:py-12 space-y-8">
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center space-y-3 max-w-2xl mx-auto"
-        >
-          <h2 className="text-h1 font-bold">Simple, Transparent Pricing</h2>
-          <p className="text-muted-foreground text-lg">
-            Choose the perfect plan for your financial goals
-          </p>
-        </motion.div>
+  return (
+    <div className="min-h-screen bg-background">
+      <Header onMenuToggle={() => toggleSidebar()} />
+      <div className="flex">
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        {/* Billing Toggle */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="flex justify-center mb-4"
-        >
-          <div className="inline-flex rounded-2xl border-2 border-emerald/20 bg-emerald/5 p-1.5 gap-1">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setBillingPeriod("monthly")}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all ${
-                billingPeriod === "monthly"
-                  ? "bg-emerald text-white shadow-lg"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Monthly
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setBillingPeriod("annual")}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all relative ${
-                billingPeriod === "annual"
-                  ? "bg-emerald text-white shadow-lg"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              Annual
-              {billingPeriod === "annual" && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="absolute -top-3 -right-3"
-                >
-                  <Badge className="bg-crimson text-white font-bold">
-                    Save 20%
-                  </Badge>
-                </motion.div>
-              )}
-            </motion.button>
-          </div>
-        </motion.div>
+        <main className="flex-1 p-6 pt-20">
+          <div className="mx-auto max-w-7xl">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+              <h1 className="text-4xl font-bold">Premium Membership</h1>
+              <p className="text-muted-foreground mt-2">
+                Unlock exclusive features and priority support with our premium plans
+              </p>
+            </motion.div>
 
-        {/* Pricing Plans */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+            {/* Premium Alert */}
+            <Alert className="mb-6 border-primary/20 bg-card">
+              <Crown className="h-4 w-4 text-primary" />
+              <AlertDescription>
+                <strong>👑 Special Offer!</strong> Get premium membership for the first 3 months at{" "}
+                <strong>50% off</strong>. Limited time only!
+              </AlertDescription>
+            </Alert>
 
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {pricingPlans.map((plan, index) => {
-            const Icon = plan.icon;
-            const isPopular = plan.badge === "Most Popular";
-            const annualPrice = billingPeriod === "annual" ? Math.floor(plan.price * 12 * 0.8) : plan.price;
-
-            return (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + index * 0.1 }}
-              >
-                <Card
-                  className={cn(
-                    "relative p-6 lg:p-8 h-full flex flex-col transition-all hover:shadow-lg",
-                    isPopular && "ring-2 ring-emerald lg:scale-105"
-                  )}
-                >
-                  {isPopular && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald text-white">
-                      {plan.badge}
-                    </Badge>
-                  )}
-
-                  {/* Plan Header */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Icon className="h-6 w-6 text-emerald" />
-                      <h3 className="text-h3 font-bold">{plan.name}</h3>
-                    </div>
-                    <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
-
-                    {plan.price === 0 ? (
-                      <div className="text-h2 font-bold text-emerald">Free</div>
-                    ) : (
-                      <div className="space-y-1">
-                        <div className="text-h2 font-bold">
-                          ₹{billingPeriod === "monthly" ? plan.price : annualPrice}
-                          <span className="text-body-sm text-muted-foreground font-normal">
-                            /{billingPeriod === "monthly" ? "month" : "year"}
-                          </span>
-                        </div>
-                        {billingPeriod === "annual" && (
-                          <p className="text-caption text-emerald font-medium">
-                            ₹{(annualPrice / 12).toFixed(0)}/month billed yearly
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* CTA Button */}
-                  {plan.name === "Starter" ? (
-                    <Button disabled className="w-full mb-6 opacity-50">
-                      Your Current Plan
-                    </Button>
-                  ) : (
-                    <Button
-                      className={`w-full mb-6 ${
-                        isPopular ? "bg-emerald hover:bg-emerald/90" : ""
-                      }`}
-                      onClick={() => handleUpgrade(plan.name)}
-                    >
-                      Upgrade Now
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  )}
-
-                  {/* Features List */}
-                  <div className="space-y-3 flex-1">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        {feature.included ? (
-                          <Check className="h-5 w-5 text-emerald shrink-0 mt-0.5" />
-                        ) : (
-                          <X className="h-5 w-5 text-muted-foreground/40 shrink-0 mt-0.5" />
-                        )}
-                        <span
-                          className={`text-body-sm ${
-                            !feature.included && "text-muted-foreground/50 line-through"
-                          }`}
-                        >
-                          {feature.text}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Premium Features Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="space-y-8"
-        >
-          <div>
-            <h2 className="text-h2 font-bold mb-8">What's Included in Pro & Elite</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {premiumFeatures.map((feature, index) => {
-                const FeatureIcon = feature.icon;
+            {/* KPI Stats */}
+            <div className="grid gap-6 lg:grid-cols-4 mb-6">
+              {[
+                { label: "Total Savings", value: "₹45,000", icon: DollarSign, color: "green" },
+                { label: "Features Unlocked", value: "28", icon: Zap, color: "blue" },
+                { label: "Premium Tier", value: "Gold", icon: Star, color: "amber" },
+                { label: "Your Status", value: "Active", icon: CheckCircle, color: "purple" },
+              ].map((stat, i) => {
+                const Icon = stat.icon;
                 return (
                   <motion.div
-                    key={index}
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.05 }}
+                    transition={{ delay: i * 0.1 }}
                   >
-                    <Card className="p-6 hover:shadow-lg transition-all">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-lg bg-emerald/10">
-                          <FeatureIcon className="h-6 w-6 text-emerald" />
+                    <Card>
+                      <CardContent className="pt-6">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="text-sm text-muted-foreground">{stat.label}</p>
+                            <p className="text-2xl font-bold mt-1">{stat.value}</p>
+                          </div>
+                          <Icon className={`w-5 h-5 text-${stat.color}-600 opacity-70`} />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold mb-1">{feature.title}</h3>
-                          <p className="text-body-sm text-muted-foreground">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </div>
+                      </CardContent>
                     </Card>
                   </motion.div>
                 );
               })}
             </div>
+
+            {/* Main Grid */}
+            <div className="grid gap-6 lg:grid-cols-3">
+              {/* Left: Premium Plans */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Premium Plans Comparison */}
+                <Card className="border-primary/20 bg-card/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Crown className="w-5 h-5 text-primary" />
+                        <div>
+                          <CardTitle>Premium Plans</CardTitle>
+                          <CardDescription>Choose the perfect plan for you</CardDescription>
+                        </div>
+                      </div>
+                      <Badge className="bg-primary">3 Plans</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {[
+                      {
+                        name: "Basic Premium",
+                        price: "₹299",
+                        period: "/month",
+                        features: ["Priority support", "Advanced reports", "Custom budgets"],
+                        match: 85,
+                      },
+                      {
+                        name: "Pro Premium",
+                        price: "₹599",
+                        period: "/month",
+                        features: ["24/7 support", "AI insights", "Unlimited exports", "Priority approvals"],
+                        match: 95,
+                        popular: true,
+                      },
+                      {
+                        name: "Elite Premium",
+                        price: "₹999",
+                        period: "/month",
+                        features: ["Dedicated manager", "Custom analytics", "API access", "White-label options"],
+                        match: 100,
+                      },
+                    ].map((plan, i) => (
+                      <div key={i} className={`p-4 rounded-lg border bg-card/50 border-primary/20 ${plan.popular ? 'ring-2 ring-primary' : ''}`}>
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <p className="font-semibold">{plan.name}</p>
+                            <p className="text-sm text-primary font-bold mt-1">{plan.price}<span className="text-xs">{plan.period}</span></p>
+                          </div>
+                          {plan.popular && <Badge className="bg-primary">Popular</Badge>}
+                        </div>
+
+                        <ul className="space-y-2 mb-4 text-sm">
+                          {plan.features.map((feature) => (
+                            <li key={feature} className="flex items-center gap-2">
+                              <CheckCircle className="w-4 h-4 text-primary" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+
+                        <Button className="w-full bg-primary">Upgrade Now</Button>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+
+                {/* Exclusive Features */}
+                <Card className="border-primary/20 bg-card/50">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Zap className="w-5 h-5 text-primary" />
+                        <div>
+                          <CardTitle>Exclusive Features</CardTitle>
+                          <CardDescription>What you get with premium</CardDescription>
+                        </div>
+                      </div>
+                      <Badge className="bg-primary">15+ Features</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {[
+                      { name: "AI Financial Advisor", desc: "Get personalized recommendations based on your profile" },
+                      { name: "Advanced Analytics", desc: "Deep dive into your spending patterns" },
+                      { name: "Unlimited Reports", desc: "Generate and export unlimited financial reports" },
+                      { name: "Priority Support", desc: "Get help from our support team within 1 hour" },
+                      { name: "Goal Planning", desc: "Advanced goal setting with AI-powered tracking" },
+                      { name: "API Access", desc: "Connect with third-party applications" },
+                    ].map((feature, i) => (
+                      <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-semibold text-sm">{feature.name}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{feature.desc}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+
+                {/* Benefits & Comparison */}
+                <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Gift className="w-5 h-5 text-purple-600" />
+                        <div>
+                          <CardTitle>Premium Benefits</CardTitle>
+                          <CardDescription>Compare with free plan</CardDescription>
+                        </div>
+                      </div>
+                      <Badge className={badgeColors.info}>Full List</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {[
+                      { feature: "Priority Support", free: false, premium: true },
+                      { feature: "Advanced Reports", free: false, premium: true },
+                      { feature: "AI Insights", free: false, premium: true },
+                      { feature: "Custom Budgets", free: true, premium: true },
+                      { feature: "Basic Tracking", free: true, premium: true },
+                      { feature: "API Access", free: false, premium: true },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center justify-between p-3 rounded-lg border bg-card/50 border-primary/20">
+                        <p className="text-sm font-medium">{item.feature}</p>
+                        <div className="flex gap-4">
+                          {item.free ? <CheckCircle className="w-5 h-5 text-muted-foreground" /> : <AlertCircle className="w-5 h-5 text-muted-foreground opacity-50" />}
+                          {item.premium && <CheckCircle className="w-5 h-5 text-primary" />}
+                        </div>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-6">
+                {/* Current Plan */}
+                <Card className="border-primary/20 bg-card/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">Your Plan</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
+                      <p className="text-xs text-muted-foreground mb-1">Current Plan</p>
+                      <p className="text-xl font-bold">Pro Premium</p>
+                      <p className="text-xs text-primary mt-2">₹599/month</p>
+                    </div>
+
+                    <div className="space-y-2 text-sm">
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Renewal Date</p>
+                        <p className="font-semibold">Jan 15, 2026</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Days Remaining</p>
+                        <p className="font-semibold">15 days</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Status</p>
+                        <Badge className="bg-primary">Active</Badge>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Upgrade Benefits */}
+                <Card className="border-primary/20 bg-card/50">
+                  <CardHeader>
+                    <CardTitle className="text-lg">Upgrade Benefits</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    {[
+                      "Instant activation",
+                      "Money-back guarantee",
+                      "Cancel anytime",
+                      "No hidden fees",
+                      "30-day free trial",
+                    ].map((benefit) => (
+                      <div key={benefit} className="flex items-center gap-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>{benefit}</span>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+
+                {/* Support */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Need Help?</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    <Button variant="outline" className="w-full justify-start text-xs">
+                      Contact Support
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start text-xs">
+                      FAQ
+                    </Button>
+                    <Button variant="outline" className="w-full justify-start text-xs">
+                      View Documentation
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Testimonials */}
+                <Card className="dark:bg-[rgb(4,35,51)]">
+                  <CardHeader>
+                    <CardTitle className="text-lg">Member Reviews</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-xs">
+                    <p className="italic">⭐⭐⭐⭐⭐ "Life changing! Worth every penny"</p>
+                    <p className="italic">⭐⭐⭐⭐⭐ "Best financial tool I've used"</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
-        </motion.div>
-
-        {/* FAQ Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="space-y-6 max-w-3xl mx-auto"
-        >
-          <h2 className="text-h2 font-bold">Frequently Asked Questions</h2>
-
-          <Tabs defaultValue="billing" className="space-y-6">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="billing">Billing</TabsTrigger>
-              <TabsTrigger value="features">Features</TabsTrigger>
-              <TabsTrigger value="support">Support</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="billing" className="space-y-4">
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">Can I cancel my subscription?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Yes, you can cancel anytime from your Account settings. Your access continues until the end of your billing period.
-                </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">When does my billing cycle renew?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Your billing cycle renews on the same day every month (or year, depending on your plan).
-                </p>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="features" className="space-y-4">
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">Can I upgrade/downgrade anytime?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Absolutely! Changes take effect immediately and we'll adjust your billing accordingly.
-                </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">What's the difference between Pro and Elite?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Elite includes a personal AI coach, 24/7 priority support, and advanced scenario planning. Pro has most features but with community support.
-                </p>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="support" className="space-y-4">
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">How do I get help?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Contact us via email, chat, or phone. Elite members get 24/7 priority support.
-                </p>
-              </Card>
-              <Card className="p-6">
-                <h3 className="font-semibold mb-2">Do you offer refunds?</h3>
-                <p className="text-muted-foreground text-sm">
-                  Yes! We offer a 7-day money-back guarantee if you're not satisfied.
-                </p>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </motion.div>
+        </main>
       </div>
-
-      {/* Payment Modal */}
-      {showPaymentModal && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm p-4"
-          onClick={() => setShowPaymentModal(false)}
-        >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md bg-card rounded-2xl p-8 shadow-xl space-y-6"
-          >
-            <div>
-              <h2 className="text-h2 font-bold mb-2">Choose Payment Method</h2>
-              <p className="text-muted-foreground text-sm">
-                Upgrade to {selectedPlan} plan
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handlePayment("razorpay")}
-                className={cn(
-                  "w-full p-4 rounded-xl border-2 transition-all text-left",
-                  selectedPaymentGateway === "razorpay"
-                    ? "border-emerald bg-emerald/5"
-                    : "border-border hover:border-emerald/50"
-                )}
-              >
-                <div className="font-semibold mb-1">Razorpay</div>
-                <div className="text-sm text-muted-foreground">
-                  Debit/Credit Card • UPI • Wallets • NetBanking
-                </div>
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handlePayment("stripe")}
-                className={cn(
-                  "w-full p-4 rounded-xl border-2 transition-all text-left",
-                  selectedPaymentGateway === "stripe"
-                    ? "border-emerald bg-emerald/5"
-                    : "border-border hover:border-emerald/50"
-                )}
-              >
-                <div className="font-semibold mb-1">Stripe</div>
-                <div className="text-sm text-muted-foreground">
-                  International cards • Visa • Mastercard • Amex
-                </div>
-              </motion.button>
-            </div>
-
-            <div className="space-y-3 pt-4 border-t">
-              <Button
-                onClick={() => handlePayment(selectedPaymentGateway)}
-                className="w-full bg-emerald hover:bg-emerald/90"
-              >
-                Continue to Payment
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => setShowPaymentModal(false)}
-                className="w-full"
-              >
-                Cancel
-              </Button>
-            </div>
-
-            <p className="text-xs text-muted-foreground text-center">
-              Your payment is secure and encrypted. 7-day money-back guarantee.
-            </p>
-          </motion.div>
-        </motion.div>
-      )}
     </div>
   );
-}
-
-function cn(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
 }

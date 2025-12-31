@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { badgeColors } from "@/lib/colors";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -52,7 +53,7 @@ export default function Marketplace() {
                   <p className="text-xs text-muted-foreground mb-2">
                     {offer.rate} • {offer.amount || offer.reward}
                   </p>
-                  <Button size="sm" className="w-full bg-blue-600">Apply Now</Button>
+                  <Button size="sm" className="w-full">Apply Now</Button>
                 </CardContent>
               </Card>
             ))}
@@ -76,7 +77,7 @@ export default function Marketplace() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-20">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Financial Marketplace</h1>
@@ -86,8 +87,8 @@ export default function Marketplace() {
             </motion.div>
 
             {/* Marketplace Alert */}
-            <Alert className="mb-6 bg-blue-50 border-blue-200">
-              <Zap className="h-4 w-4 text-blue-600" />
+            <Alert className="mb-6 border-primary/20 bg-card">
+              <Zap className="h-4 w-4 text-primary" />
               <AlertDescription>
                 <strong>🎁 Exclusive Offer!</strong> Your credit profile qualifies for a personal
                 loan at <strong>7.5% interest</strong> with up to <strong>₹50 Lakhs</strong>. Limited
@@ -132,17 +133,17 @@ export default function Marketplace() {
               {/* Left: Products */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Loan Products */}
-                <Card className="border-blue-200 bg-blue-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <DollarSign className="w-5 h-5 text-blue-600" />
+                        <DollarSign className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Loan Products</CardTitle>
                           <CardDescription>Competitive rates based on your profile</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-blue-600">3 Options</Badge>
+                      <Badge className="bg-primary">3 Options</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -175,11 +176,11 @@ export default function Marketplace() {
                         match: 82,
                       },
                     ].map((loan, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-3">
                           <div>
                             <p className="font-semibold">{loan.name}</p>
-                            <p className="text-xs text-blue-600 font-medium mt-1">{loan.score}</p>
+                            <p className="text-xs text-primary font-medium mt-1">{loan.score}</p>
                           </div>
                           <Badge variant="outline">
                             <Gauge className="w-3 h-3 mr-1" />
@@ -203,7 +204,7 @@ export default function Marketplace() {
                         </div>
 
                         <div className="flex gap-2">
-                          <Button className="flex-1 bg-blue-600">Apply Now</Button>
+                          <Button className="flex-1 bg-primary">Apply Now</Button>
                           <Button variant="outline" className="flex-1">
                             Compare
                           </Button>
@@ -214,17 +215,17 @@ export default function Marketplace() {
                 </Card>
 
                 {/* Credit Cards */}
-                <Card className="border-green-200 bg-green-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <CreditCard className="w-5 h-5 text-green-600" />
+                        <CreditCard className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Credit Card Offers</CardTitle>
                           <CardDescription>Premium cards with rewards</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-green-600">4 Cards</Badge>
+                      <Badge className="bg-primary">4 Cards</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -254,7 +255,7 @@ export default function Marketplace() {
                         fee: "Lifetime free",
                       },
                     ].map((card, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <p className="font-semibold">{card.name}</p>
@@ -270,7 +271,7 @@ export default function Marketplace() {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-muted-foreground">Sign-up Bonus</span>
-                            <span className="font-semibold text-green-600">{card.bonus}</span>
+                            <span className="font-semibold text-primary">{card.bonus}</span>
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-muted-foreground">Credit Limit</span>
@@ -282,14 +283,14 @@ export default function Marketplace() {
                           </div>
                         </div>
 
-                        <Button className="w-full bg-green-600">Apply Now</Button>
+                        <Button className="w-full bg-primary">Apply Now</Button>
                       </div>
                     ))}
                   </CardContent>
                 </Card>
 
                 {/* Insurance Products */}
-                <Card className="border-purple-200 bg-purple-50/30">
+                <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -299,7 +300,7 @@ export default function Marketplace() {
                           <CardDescription>Affordable health & life coverage</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-purple-600">5 Plans</Badge>
+                      <Badge className={badgeColors.info}>5 Plans</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -326,7 +327,7 @@ export default function Marketplace() {
                         features: ["Combined savings", "Bundle discount", "Flexible coverage"],
                       },
                     ].map((plan, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <p className="font-semibold">{plan.name}</p>
@@ -341,7 +342,7 @@ export default function Marketplace() {
                           </div>
                           <div className="flex items-center justify-between">
                             <span className="text-muted-foreground">Monthly Premium</span>
-                            <span className="font-semibold text-green-600">{plan.premium}</span>
+                            <span className="font-semibold text-primary">{plan.premium}</span>
                           </div>
                         </div>
 
@@ -349,13 +350,13 @@ export default function Marketplace() {
                         <ul className="text-xs space-y-0.5 mb-3">
                           {plan.features.map((feature) => (
                             <li key={feature} className="flex items-center gap-1 text-muted-foreground">
-                              <CheckCircle className="w-3 h-3 text-green-600" />
+                              <CheckCircle className="w-3 h-3 text-primary" />
                               {feature}
                             </li>
                           ))}
                         </ul>
 
-                        <Button className="w-full bg-purple-600">Get Quote</Button>
+                        <Button className="w-full bg-primary">Get Quote</Button>
                       </div>
                     ))}
                   </CardContent>
@@ -365,15 +366,15 @@ export default function Marketplace() {
               {/* Sidebar */}
               <div className="space-y-6">
                 {/* Your Profile */}
-                <Card className="border-amber-200 bg-amber-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <CardTitle className="text-lg">Your Profile</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="p-3 rounded-lg border bg-white">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex items-center justify-between mb-1">
                         <p className="text-sm font-medium">Credit Score</p>
-                        <Badge className="bg-green-600">Excellent</Badge>
+                        <Badge className="bg-primary">Excellent</Badge>
                       </div>
                       <p className="text-2xl font-bold">742</p>
                     </div>
@@ -396,7 +397,7 @@ export default function Marketplace() {
                 </Card>
 
                 {/* Premium Tier Benefits */}
-                <Card className="border-pink-200 bg-pink-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <CardTitle className="text-lg">Premium Member</CardTitle>
                   </CardHeader>
@@ -409,7 +410,7 @@ export default function Marketplace() {
                       "No processing fees",
                     ].map((benefit) => (
                       <div key={benefit} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-pink-600" />
+                        <CheckCircle className="w-4 h-4 text-primary" />
                         <span>{benefit}</span>
                       </div>
                     ))}
@@ -438,7 +439,7 @@ export default function Marketplace() {
                 </Card>
 
                 {/* FAQ */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Help & FAQs</CardTitle>
                   </CardHeader>

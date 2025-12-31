@@ -44,7 +44,7 @@ export default function BillReminders() {
             <Card>
               <CardContent className="pt-4">
                 <p className="text-xs text-muted-foreground">Due Soon</p>
-                <p className="text-xl font-bold text-orange-600">2</p>
+                <p className="text-xl font-bold text-amber-600 dark:text-amber-500">2</p>
                 <Badge variant="destructive" className="mt-2 text-xs">3 days left</Badge>
               </CardContent>
             </Card>
@@ -79,7 +79,7 @@ export default function BillReminders() {
                 </div>
                 <p className="text-lg font-bold">{bill.amount}</p>
                 {bill.status !== "Paid" && (
-                  <Button size="sm" className="w-full mt-2 bg-blue-600">Pay Now</Button>
+                  <Button size="sm" className="w-full mt-2">Pay Now</Button>
                 )}
               </CardContent>
             </Card>
@@ -96,7 +96,7 @@ export default function BillReminders() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Bills & Recurring Payments</h1>
@@ -136,8 +136,8 @@ export default function BillReminders() {
             </div>
 
             {/* Alerts */}
-            <Alert className="mb-6 bg-orange-50 border-orange-200">
-              <AlertTriangle className="h-4 w-4 text-orange-600" />
+            <Alert className="mb-6 bg-card border-primary/20">
+              <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-500" />
               <AlertDescription>
                 <strong>2 bills due in next 3 days:</strong> Electricity (Dec 3) and Internet (Dec 5)
               </AlertDescription>
@@ -146,10 +146,10 @@ export default function BillReminders() {
             {/* Bills by Status */}
             <div className="grid gap-6 lg:grid-cols-3">
               {/* Due Soon */}
-              <Card className="border-orange-200 bg-orange-50/30">
+              <Card className="border-primary/20 bg-card/50">
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5 text-orange-600" />
+                    <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-500" />
                     <CardTitle>Due Soon (Next 7 days)</CardTitle>
                   </div>
                 </CardHeader>
@@ -158,15 +158,15 @@ export default function BillReminders() {
                     { name: "Electricity Bill", amount: "₹2,450", daysLeft: 3 },
                     { name: "Internet Bill", amount: "₹999", daysLeft: 5 },
                   ].map((bill, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-white">
+                    <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium text-sm">{bill.name}</p>
-                          <p className="text-xs text-red-600 font-medium">{bill.daysLeft} days left</p>
+                          <p className="text-xs text-red-600 dark:text-red-500 font-medium">{bill.daysLeft} days left</p>
                         </div>
                         <p className="font-bold">{bill.amount}</p>
                       </div>
-                      <Button size="sm" className="w-full bg-orange-600 hover:bg-orange-700">
+                      <Button size="sm" className="w-full">
                         Pay Now
                       </Button>
                     </div>
@@ -175,10 +175,10 @@ export default function BillReminders() {
               </Card>
 
               {/* Upcoming (Future) */}
-              <Card className="border-blue-200 bg-blue-50/30">
+              <Card className="border-primary/20 bg-card/50">
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-blue-600" />
+                    <Calendar className="w-5 h-5 text-primary" />
                     <CardTitle>Upcoming (7-30 days)</CardTitle>
                   </div>
                 </CardHeader>
@@ -188,7 +188,7 @@ export default function BillReminders() {
                     { name: "Gym Membership", amount: "₹2,000", date: "Dec 20" },
                     { name: "Phone Bill", amount: "₹599", date: "Dec 25" },
                   ].map((bill, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-white">
+                    <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex justify-between items-start">
                         <div>
                           <p className="font-medium text-sm">{bill.name}</p>
@@ -210,10 +210,10 @@ export default function BillReminders() {
               </Card>
 
               {/* Recently Paid */}
-              <Card className="border-green-200 bg-green-50/30">
+              <Card className="border-primary/20 bg-card/50">
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-500" />
                     <CardTitle>Recently Paid</CardTitle>
                   </div>
                 </CardHeader>
@@ -223,13 +223,13 @@ export default function BillReminders() {
                     { name: "Loan EMI", amount: "₹18,500", date: "Nov 30" },
                     { name: "Credit Card Bill", amount: "₹15,423", date: "Nov 28" },
                   ].map((bill, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-white">
+                    <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium text-sm">{bill.name}</p>
                           <p className="text-xs text-muted-foreground">Paid on {bill.date}</p>
                         </div>
-                        <Badge variant="outline" className="text-green-700">✓</Badge>
+                        <Badge variant="outline" className="text-green-700 dark:text-green-400">✓</Badge>
                       </div>
                       <Button size="sm" variant="outline" className="w-full">
                         <Download className="w-4 h-4 mr-1" />
@@ -242,17 +242,17 @@ export default function BillReminders() {
             </div>
 
             {/* Auto-Pay Management */}
-            <Card className="mt-6 border-purple-200">
+            <Card className="mt-6 border-primary/20 dark:bg-[rgb(4,35,51)]">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Bell className="w-5 h-5 text-purple-600" />
+                    <Bell className="w-5 h-5 text-primary" />
                     <div>
                       <CardTitle>Auto-Pay Subscriptions</CardTitle>
                       <CardDescription>Automatically paid bills</CardDescription>
                     </div>
                   </div>
-                  <Button className="bg-purple-600">
+                  <Button className="bg-primary">
                     <Plus className="w-4 h-4 mr-1" />
                     Add Auto-Pay
                   </Button>
@@ -266,7 +266,7 @@ export default function BillReminders() {
                     { bill: "Phone Bill", amount: "₹599", frequency: "Monthly", status: "Active" },
                     { bill: "Insurance Premium", amount: "₹4,500", frequency: "Quarterly", status: "Active" },
                   ].map((item, i) => (
-                    <div key={i} className="p-4 rounded-lg border bg-purple-50/30 flex items-center justify-between">
+                    <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20 flex items-center justify-between">
                       <div>
                         <p className="font-medium">{item.bill}</p>
                         <p className="text-sm text-muted-foreground">
@@ -274,7 +274,7 @@ export default function BillReminders() {
                         </p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Badge className="bg-green-600">Active</Badge>
+                        <Badge className="bg-primary">Active</Badge>
                         <Button variant="outline" size="sm">
                           Edit
                         </Button>

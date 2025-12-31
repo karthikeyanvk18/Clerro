@@ -269,7 +269,7 @@ export default function MakePayment() {
         <div className="flex">
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          <main className="flex-1 p-6 flex items-center justify-center">
+          <main className="flex-1 p-6 pt-16 flex items-center justify-center">
             <div className="max-w-md w-full">
               <Card className="p-8 text-center space-y-6">
                 <motion.div
@@ -326,7 +326,7 @@ export default function MakePayment() {
         <div className="flex">
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-6 pt-16">
             <div className="mx-auto max-w-2xl">
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
                 <h1 className="text-h1 font-bold">Confirm Payment</h1>
@@ -387,7 +387,7 @@ export default function MakePayment() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+          <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-2xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
               <Button variant="ghost" onClick={() => navigate(`/debt/${id}`)} className="mb-4">
@@ -399,7 +399,7 @@ export default function MakePayment() {
               <p className="text-muted-foreground">Pay your monthly EMI</p>
             </motion.div>
 
-            <Card className="p-6 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 mb-6">
+            <Card className="p-6 bg-card border-primary/20 mb-6">
               <p className="text-blue-900 dark:text-blue-100">
                 <span className="font-medium">Due Amount: </span>
                 <span className="text-h2">₹{dueAmount.toLocaleString()}</span>

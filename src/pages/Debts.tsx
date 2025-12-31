@@ -13,6 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, TrendingDown, DollarSign, Calendar, AlertCircle, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { debtTypeColors, getBadgeColor } from "@/lib/colors";
 
 const debtsData = [
   {
@@ -106,18 +107,7 @@ export default function Debts() {
   const filteredDebts = activeTab === "all" ? debtsData : debtsData.filter(d => d.status === activeTab);
 
   const getTypeColor = (type: string) => {
-    switch (type) {
-      case "home_loan":
-        return "bg-blue-100 text-blue-800";
-      case "car_loan":
-        return "bg-purple-100 text-purple-800";
-      case "credit_card":
-        return "bg-red-100 text-red-800";
-      case "personal_loan":
-        return "bg-orange-100 text-orange-800";
-      default:
-        return "bg-green-100 text-green-800";
-    }
+    return getBadgeColor(type, debtTypeColors);
   };
 
   if (isMobile) {
@@ -145,7 +135,7 @@ export default function Debts() {
                       <p className="font-semibold">{debt.name}</p>
                       <Badge className={getTypeColor(debt.type)}>{debt.type}</Badge>
                     </div>
-                    {debt.remaining === 0 && <CheckCircle2 className="h-5 w-5 text-green-600" />}
+                    {debt.remaining === 0 && <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-500" />}
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
@@ -176,7 +166,7 @@ export default function Debts() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -268,7 +258,7 @@ export default function Debts() {
                             <div className="flex-1">
                               <CardTitle className="flex items-center gap-2">
                                 {debt.name}
-                                {debt.remaining === 0 && <CheckCircle2 className="h-5 w-5 text-green-600" />}
+                                {debt.remaining === 0 && <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-500" />}
                               </CardTitle>
                               <CardDescription>{debt.type.replace(/_/g, " ")}</CardDescription>
                             </div>
@@ -310,9 +300,9 @@ export default function Debts() {
                               </div>
 
                               {debt.daysUntilPayment <= 7 && (
-                                <div className="flex items-center gap-2 p-3 bg-orange-50 border border-orange-200 rounded-lg">
-                                  <AlertCircle className="h-4 w-4 text-orange-600" />
-                                  <span className="text-sm text-orange-800">
+                                <div className="flex items-center gap-2 p-3 bg-amber-600/10 border border-amber-600/20 rounded-lg">
+                                  <AlertCircle className="h-4 w-4 text-amber-700 dark:text-amber-400" />
+                                  <span className="text-sm text-amber-700 dark:text-amber-400">
                                     Payment due in {debt.daysUntilPayment} days
                                   </span>
                                 </div>
@@ -332,11 +322,11 @@ export default function Debts() {
                               </div>
                             </>
                           ) : (
-                            <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
-                              <CheckCircle2 className="h-6 w-6 text-green-600" />
+                            <div className="flex items-center gap-3 p-4 bg-green-600/10 border border-green-600/20 rounded-lg">
+                              <CheckCircle2 className="h-6 w-6 text-green-700 dark:text-green-400" />
                               <div>
-                                <p className="font-semibold text-green-900">Debt Paid Off!</p>
-                                <p className="text-sm text-green-700">Congratulations! This debt has been fully repaid.</p>
+                                <p className="font-semibold text-green-700 dark:text-green-400">Debt Paid Off!</p>
+                                <p className="text-sm text-green-600 dark:text-green-500">Congratulations! This debt has been fully repaid.</p>
                               </div>
                             </div>
                           )}

@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { badgeColors } from "@/lib/colors";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -40,7 +41,7 @@ export default function DataVault() {
           <h1 className="text-2xl font-bold">Data Vault</h1>
 
           {/* Security Status */}
-          <Card className="border-green-200 bg-green-50/30">
+          <Card className="border-green-200 dark:bg-[rgb(4,35,51)]">
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -98,7 +99,7 @@ export default function DataVault() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Data Vault & Security</h1>
@@ -108,7 +109,7 @@ export default function DataVault() {
             </motion.div>
 
             {/* Security Alert */}
-            <Alert className="mb-6 bg-green-50 border-green-200">
+            <Alert className="mb-6 border-primary/20 dark:bg-[rgb(4,35,51)]">
               <Shield className="h-4 w-4 text-green-600" />
               <AlertDescription>
                 <strong>✓ Your vault is secured!</strong> All documents are encrypted with AES-256
@@ -117,8 +118,8 @@ export default function DataVault() {
             </Alert>
 
             {/* Expiry Alert */}
-            <Alert className="mb-6 bg-orange-50 border-orange-200">
-              <AlertTriangle className="h-4 w-4 text-orange-600" />
+            <Alert className="mb-6 border-amber-600/30 dark:bg-[rgb(4,35,51)]">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
               <AlertDescription>
                 <strong>2 documents expiring soon:</strong> Passport expires on Feb 15, 2025 and
                 ATM Card expires on Dec 28, 2024
@@ -162,17 +163,17 @@ export default function DataVault() {
               {/* Documents */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Financial Documents */}
-                <Card className="border-blue-200 bg-blue-50/30">
+                <Card className="border-primary/20 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-blue-600" />
+                        <FileText className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Financial Documents</CardTitle>
                           <CardDescription>Tax returns, receipts, statements</CardDescription>
                         </div>
                       </div>
-                      <Button size="sm" className="bg-blue-600">
+                      <Button size="sm" className="bg-primary">
                         <Upload className="w-4 h-4 mr-1" />
                         Upload
                       </Button>
@@ -199,7 +200,7 @@ export default function DataVault() {
                         expiry: "Dec 20, 2024",
                       },
                     ].map((doc, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
                             <p className="font-semibold text-sm">{doc.name}</p>
@@ -233,7 +234,7 @@ export default function DataVault() {
                 </Card>
 
                 {/* Identity Documents */}
-                <Card className="border-purple-200 bg-purple-50/30">
+                <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -266,7 +267,7 @@ export default function DataVault() {
                         expiry: "Mar 30, 2026",
                       },
                     ].map((doc, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
                             <div className="flex items-center gap-2">
@@ -301,7 +302,7 @@ export default function DataVault() {
                 </Card>
 
                 {/* Other Documents */}
-                <Card className="border-green-200 bg-green-50/30">
+                <Card className="border-green-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -322,7 +323,7 @@ export default function DataVault() {
                       { name: "Debit Card (HDFC)", expiry: "Dec 28, 2024", status: "Expiring Soon" },
                       { name: "Credit Card (ICICI)", expiry: "Jun 30, 2026", status: "Active" },
                     ].map((doc, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                         <div className="flex items-start justify-between">
                           <div>
                             <p className="font-semibold text-sm">{doc.name}</p>
@@ -345,57 +346,57 @@ export default function DataVault() {
               {/* Sidebar */}
               <div className="space-y-6">
                 {/* Security Settings */}
-                <Card className="border-green-200 bg-green-50/30">
+                <Card className="border-green-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Security</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="p-3 rounded-lg border bg-white">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-medium">Encryption</p>
                           <p className="text-xs text-muted-foreground">AES-256</p>
                         </div>
-                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <CheckCircle className="w-5 h-5 text-primary" />
                       </div>
                     </div>
-                    <div className="p-3 rounded-lg border bg-white">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-medium">Biometric Lock</p>
                           <p className="text-xs text-muted-foreground">Fingerprint</p>
                         </div>
-                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <CheckCircle className="w-5 h-5 text-primary" />
                       </div>
                     </div>
-                    <div className="p-3 rounded-lg border bg-white">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-medium">Last Backup</p>
                           <p className="text-xs text-muted-foreground">Today at 2:45 PM</p>
                         </div>
-                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <CheckCircle className="w-5 h-5 text-primary" />
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
                 {/* Expiry Calendar */}
-                <Card className="border-orange-200 bg-orange-50/30">
+                <Card className="border-orange-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Expiry Calendar</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="space-y-1">
                       <p className="text-xs font-semibold text-orange-600">This Month</p>
-                      <div className="text-sm p-2 rounded border border-orange-200 bg-white">
+                      <div className="text-sm p-2 rounded border border-orange-200 bg-card/50 dark:bg-[rgb(6,43,63)]">
                         <p className="font-medium">ATM Card</p>
                         <p className="text-xs text-muted-foreground">Dec 28, 2024</p>
                       </div>
                     </div>
                     <div className="space-y-1">
                       <p className="text-xs font-semibold text-yellow-600">Next Month</p>
-                      <div className="text-sm p-2 rounded border border-yellow-200 bg-white">
+                      <div className="text-sm p-2 rounded border border-yellow-200 bg-card/50 dark:bg-[rgb(6,43,63)]">
                         <p className="font-medium">Passport</p>
                         <p className="text-xs text-muted-foreground">Feb 15, 2025</p>
                       </div>
@@ -407,7 +408,7 @@ export default function DataVault() {
                 </Card>
 
                 {/* Privacy Policy */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Privacy</CardTitle>
                   </CardHeader>
@@ -426,7 +427,7 @@ export default function DataVault() {
                 </Card>
 
                 {/* Storage */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Storage</CardTitle>
                   </CardHeader>

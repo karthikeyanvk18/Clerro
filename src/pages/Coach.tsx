@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, TrendingUp, AlertCircle, CheckCircle2, MessageSquare, BookOpen, Award } from "lucide-react";
+import { badgeColors, getBadgeColor } from "@/lib/colors";
 
 const coachingTips = [
   {
@@ -96,14 +97,7 @@ export default function Coach() {
   const isMobile = useIsMobile();
 
   const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "high":
-        return "bg-red-100 text-red-800";
-      case "medium":
-        return "bg-orange-100 text-orange-800";
-      default:
-        return "bg-green-100 text-green-800";
-    }
+    return getBadgeColor(priority, badgeColors);
   };
 
   const filteredTips = activeTab === "all" ? coachingTips : coachingTips.filter(t => t.category === activeTab);
@@ -150,7 +144,7 @@ export default function Coach() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -244,7 +238,7 @@ export default function Coach() {
             </Tabs>
 
             {/* Learning Resources */}
-            <Card>
+            <Card className="dark:bg-[rgb(4,35,51)]">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BookOpen className="h-5 w-5" />
@@ -262,14 +256,14 @@ export default function Coach() {
                     { title: "Tax Optimization", duration: "25 min", level: "Intermediate" },
                     { title: "Wealth Building", duration: "30 min", level: "Advanced" },
                   ].map((resource, idx) => (
-                    <Card key={idx} className="bg-muted/50">
+                    <Card key={idx} className="bg-muted/50 dark:bg-[rgb(6,43,63)]">
                       <CardContent className="pt-6">
                         <p className="font-semibold text-sm">{resource.title}</p>
                         <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
                           <span>{resource.duration}</span>
                           <Badge variant="outline">{resource.level}</Badge>
                         </div>
-                        <Button variant="ghost" size="sm" className="w-full mt-3">
+                        <Button className="w-full mt-3 bg-white text-[rgb(4,35,51)] hover:bg-white/90">
                           Start Learning
                         </Button>
                       </CardContent>

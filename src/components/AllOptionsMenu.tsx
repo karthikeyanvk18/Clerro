@@ -25,15 +25,15 @@ interface MenuOption {
 }
 
 const allOptions: MenuOption[] = [
-  { icon: User, label: "Profile", href: "/profile", color: "text-blue-600" },
-  { icon: LogOut, label: "Account", href: "/account", color: "text-purple-600" },
-  { icon: FileText, label: "Reports", href: "/reports", color: "text-blue-600" },
-  { icon: Share2, label: "Referrals", href: "/referral", color: "text-purple-600" },
-  { icon: Zap, label: "Integrations", href: "/integrations", color: "text-orange-600" },
+  { icon: User, label: "Profile", href: "/profile", color: "text-primary" },
+  { icon: LogOut, label: "Account", href: "/account", color: "text-primary" },
+  { icon: FileText, label: "Reports", href: "/reports", color: "text-primary" },
+  { icon: Share2, label: "Referrals", href: "/referral", color: "text-primary" },
+  { icon: Zap, label: "Integrations", href: "/integrations", color: "text-amber-600 dark:text-amber-500" },
   { icon: Zap, label: "Upgrade Pro", href: "/premium", color: "text-emerald", badge: "★" },
-  { icon: Settings, label: "Settings", href: "/settings", color: "text-gray-600" },
+  { icon: Settings, label: "Settings", href: "/settings", color: "text-muted-foreground" },
   { icon: Heart, label: "Support", href: "#", color: "text-crimson" },
-  { icon: HelpCircle, label: "Help", href: "#", color: "text-blue-600" },
+  { icon: HelpCircle, label: "Help", href: "#", color: "text-primary" },
 ];
 
 export function AllOptionsMenu() {

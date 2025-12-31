@@ -46,7 +46,7 @@ export default function ResumeBuilder() {
                 <Badge className="bg-green-600">ATS Ready</Badge>
               </div>
               <div className="space-y-2">
-                <Button className="w-full bg-blue-600">Edit</Button>
+                <Button className="w-full">Edit</Button>
                 <Button variant="outline" className="w-full">Download PDF</Button>
               </div>
             </CardContent>
@@ -84,7 +84,7 @@ export default function ResumeBuilder() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Resume Builder</h1>
@@ -94,7 +94,7 @@ export default function ResumeBuilder() {
             </motion.div>
 
             {/* ATS Score Alert */}
-            <Alert className="mb-6 bg-green-50 border-green-200">
+            <Alert className="mb-6 bg-card border-primary/20">
               <CheckCircle className="h-4 w-4 text-green-600" />
               <AlertDescription>
                 <strong>Your resume is ATS-optimized!</strong> 98% compatibility score with most
@@ -107,23 +107,23 @@ export default function ResumeBuilder() {
               {/* Left: Editor */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Current Resume */}
-                <Card className="border-2 border-blue-200">
+                <Card className="border-2 border-primary/30">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-blue-600" />
+                        <FileText className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Your Resume</CardTitle>
                           <CardDescription>Full Stack Developer</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-green-600">ATS Ready</Badge>
+                      <Badge className="bg-primary">ATS Ready</Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="rounded-lg border border-dashed p-6 mb-4 bg-blue-50/30">
+                    <div className="rounded-lg border border-dashed p-6 mb-4 bg-card/50">
                       <div className="text-center">
-                        <FileText className="w-12 h-12 mx-auto text-blue-400 mb-3" />
+                        <FileText className="w-12 h-12 mx-auto text-primary/60 mb-3" />
                         <p className="font-semibold mb-1">John Doe</p>
                         <p className="text-sm text-muted-foreground">Full Stack Developer • India</p>
                         <p className="text-sm text-muted-foreground">john@example.com • +91-9876543210</p>
@@ -164,7 +164,7 @@ export default function ResumeBuilder() {
                     </div>
 
                     <div className="flex gap-3 mt-6">
-                      <Button className="flex-1 bg-blue-600">
+                      <Button className="flex-1">
                         <Edit2 className="w-4 h-4 mr-1" />
                         Edit Resume
                       </Button>
@@ -177,7 +177,7 @@ export default function ResumeBuilder() {
                 </Card>
 
                 {/* AI Grammar Check */}
-                <Card className="border-orange-200 bg-orange-50/30">
+                <Card className="border-orange-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-orange-600" />
@@ -208,7 +208,7 @@ export default function ResumeBuilder() {
                         severity: "medium",
                       },
                     ].map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg border bg-white">
+                      <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start gap-2 mb-2">
                           <Badge
                             variant={item.severity === "high" ? "destructive" : "outline"}
@@ -267,7 +267,7 @@ export default function ResumeBuilder() {
                 </Card>
 
                 {/* Templates */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Resume Templates</CardTitle>
                   </CardHeader>
@@ -280,7 +280,7 @@ export default function ResumeBuilder() {
                     ].map((template) => (
                       <div
                         key={template.name}
-                        className="p-3 rounded-lg border cursor-pointer hover:bg-blue-50 transition"
+                        className="p-3 rounded-lg border cursor-pointer hover:bg-card/80 transition border-primary/20"
                       >
                         <div className="flex items-center justify-between">
                           <div>
@@ -288,7 +288,7 @@ export default function ResumeBuilder() {
                             <p className="text-xs text-muted-foreground">{template.match}</p>
                           </div>
                           {template.name === "Modern" && (
-                            <Badge className="bg-green-600">Active</Badge>
+                            <Badge className="bg-primary">Active</Badge>
                           )}
                         </div>
                       </div>
@@ -297,7 +297,7 @@ export default function ResumeBuilder() {
                 </Card>
 
                 {/* Quick Actions */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Quick Actions</CardTitle>
                   </CardHeader>
@@ -318,7 +318,7 @@ export default function ResumeBuilder() {
                 </Card>
 
                 {/* Cover Letter */}
-                <Card className="border-purple-200 bg-purple-50/30">
+                <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Cover Letter</CardTitle>
                   </CardHeader>
@@ -336,7 +336,7 @@ export default function ResumeBuilder() {
             </div>
 
             {/* Cover Letter Generator Section */}
-            <Card className="mt-6 border-purple-200">
+            <Card className="mt-6 border-purple-200 dark:bg-[rgb(4,35,51)]">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -366,7 +366,7 @@ export default function ResumeBuilder() {
                       score: 88,
                     },
                   ].map((letter, i) => (
-                    <div key={i} className="p-4 rounded-lg border bg-purple-50/30">
+                    <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                       <div className="flex items-center justify-between mb-2">
                         <div>
                           <p className="font-medium">{letter.role}</p>

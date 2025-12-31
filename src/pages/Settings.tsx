@@ -118,7 +118,7 @@ export default function Settings() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-4xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -492,7 +492,7 @@ export default function Settings() {
                         Delete Account
                       </Button>
 
-                      <Alert className="border-red-200 bg-red-50">
+                      <Alert className="border-red-500/20 bg-red-500/10 dark:bg-red-500/20">
                         <AlertDescription className="text-xs text-red-800">
                           Deleting your account is permanent and cannot be undone. All your data will be deleted.
                         </AlertDescription>

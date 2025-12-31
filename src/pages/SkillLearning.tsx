@@ -42,7 +42,7 @@ export default function SkillLearning() {
               <p className="text-xs text-muted-foreground mb-1">Skill Gap For Your Next Role</p>
               <p className="text-sm font-semibold mb-2">Senior React Developer</p>
               <p className="text-lg font-bold text-orange-600">3 Skills Missing</p>
-              <Badge className="mt-2 bg-orange-600">Start Learning</Badge>
+              <Badge className="mt-2 bg-amber-600">Start Learning</Badge>
             </CardContent>
           </Card>
 
@@ -53,7 +53,7 @@ export default function SkillLearning() {
               <Card key={skill}>
                 <CardContent className="pt-3">
                   <p className="text-sm font-medium mb-1">{skill}</p>
-                  <Button size="sm" className="w-full bg-blue-600">Find Courses</Button>
+                  <Button size="sm" className="w-full">Find Courses</Button>
                 </CardContent>
               </Card>
             ))}
@@ -87,7 +87,7 @@ export default function SkillLearning() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Skill Development & Learning Paths</h1>
@@ -97,8 +97,8 @@ export default function SkillLearning() {
             </motion.div>
 
             {/* Skill Gap Alert */}
-            <Alert className="mb-6 bg-orange-50 border-orange-200">
-              <AlertTriangle className="h-4 w-4 text-orange-600" />
+            <Alert className="mb-6 bg-card border-amber-600/30">
+              <AlertTriangle className="h-4 w-4 text-amber-600" />
               <AlertDescription>
                 <strong>Gap Analysis Found!</strong> For your target role "Senior React Developer",
                 you need: <strong>TypeScript Advanced, GraphQL, Web Performance</strong>. Start learning today!
@@ -142,17 +142,17 @@ export default function SkillLearning() {
               {/* Left: Skill Gaps */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Skill Gap Analysis */}
-                <Card className="border-orange-200 bg-orange-50/30">
+                <Card className="border-amber-600/30 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Target className="w-5 h-5 text-orange-600" />
+                        <Target className="w-5 h-5 text-amber-600" />
                         <div>
                           <CardTitle>Skill Gap Analysis</CardTitle>
                           <CardDescription>For: Senior React Developer Role</CardDescription>
                         </div>
                       </div>
-                      <Button className="bg-orange-600">
+                      <Button className="bg-amber-600">
                         <Plus className="w-4 h-4 mr-1" />
                         Find Courses
                       </Button>
@@ -180,7 +180,7 @@ export default function SkillLearning() {
                           difficulty: "Advanced",
                         },
                       ].map((gap, i) => (
-                        <div key={i} className="p-4 rounded-lg border bg-white">
+                        <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <p className="font-semibold">{gap.skill}</p>
@@ -190,7 +190,7 @@ export default function SkillLearning() {
                           </div>
                           <div className="flex items-center justify-between">
                             <p className="text-sm text-muted-foreground">{gap.courses} courses available</p>
-                            <Button size="sm" className="bg-orange-600">
+                            <Button size="sm" className="bg-amber-600">
                               View Courses
                             </Button>
                           </div>
@@ -201,10 +201,10 @@ export default function SkillLearning() {
                 </Card>
 
                 {/* Currently Learning */}
-                <Card className="border-blue-200 bg-blue-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center gap-2">
-                      <BookOpen className="w-5 h-5 text-blue-600" />
+                      <BookOpen className="w-5 h-5 text-primary" />
                       <div>
                         <CardTitle>Currently Learning</CardTitle>
                         <CardDescription>Courses in progress</CardDescription>
@@ -232,7 +232,7 @@ export default function SkillLearning() {
                         hoursLeft: 22,
                       },
                     ].map((course, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-3">
                           <div>
                             <p className="font-semibold">{course.course}</p>
@@ -257,7 +257,7 @@ export default function SkillLearning() {
                 </Card>
 
                 {/* Course Recommendations */}
-                <Card className="border-green-200 bg-green-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center gap-2">
                       <Lightbulb className="w-5 h-5 text-green-600" />
@@ -291,7 +291,7 @@ export default function SkillLearning() {
                         students: "18K+",
                       },
                     ].map((course, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <p className="font-semibold">{course.course}</p>
@@ -305,7 +305,7 @@ export default function SkillLearning() {
                         <p className="text-sm text-muted-foreground mb-3">
                           {course.students} students • {course.price}
                         </p>
-                        <Button className="w-full bg-green-600">Enroll Now</Button>
+                        <Button className="w-full bg-primary">Enroll Now</Button>
                       </div>
                     ))}
                   </CardContent>
@@ -315,7 +315,7 @@ export default function SkillLearning() {
               {/* Right: Sidebar */}
               <div className="space-y-6">
                 {/* Target Role */}
-                <Card className="border-purple-200 bg-purple-50/30">
+                <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Target Role</CardTitle>
                   </CardHeader>
@@ -337,7 +337,7 @@ export default function SkillLearning() {
                 </Card>
 
                 {/* Certifications */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Certifications</CardTitle>
                   </CardHeader>
@@ -347,7 +347,7 @@ export default function SkillLearning() {
                       { cert: "Google Cloud Associate", status: "In Progress", date: "50%" },
                       { cert: "JavaScript Expert", status: "Completed", date: "Aug 2024" },
                     ].map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg border">
+                      <div key={i} className="p-3 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                         <div className="flex items-start justify-between">
                           <div>
                             <p className="font-medium text-sm">{item.cert}</p>
@@ -369,7 +369,7 @@ export default function SkillLearning() {
                 </Card>
 
                 {/* Learning Platforms */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Connected Platforms</CardTitle>
                   </CardHeader>
@@ -379,7 +379,7 @@ export default function SkillLearning() {
                       { name: "Coursera", connected: true, courses: 3 },
                       { name: "LinkedIn Learning", connected: true, courses: 2 },
                     ].map((platform) => (
-                      <div key={platform.name} className="p-2.5 rounded border flex items-center justify-between">
+                      <div key={platform.name} className="p-2.5 rounded border flex items-center justify-between bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                         <div className="flex items-center gap-2">
                           {platform.connected && (
                             <CheckCircle className="w-4 h-4 text-green-600" />

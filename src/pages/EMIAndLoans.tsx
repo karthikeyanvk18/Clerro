@@ -146,7 +146,7 @@ export default function EMIAndLoans() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -222,7 +222,7 @@ export default function EMIAndLoans() {
               </TabsList>
 
               <TabsContent value="overview" className="space-y-4">
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle>All EMI & Loans</CardTitle>
                     <CardDescription>
@@ -236,7 +236,7 @@ export default function EMIAndLoans() {
               </TabsContent>
 
               <TabsContent value="upcoming" className="space-y-4">
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle>Upcoming Payments</CardTitle>
                     <CardDescription>
@@ -252,7 +252,7 @@ export default function EMIAndLoans() {
               <TabsContent value="details" className="space-y-4">
                 <div className="grid gap-4">
                   {loanDetails.map((loan) => (
-                    <Card key={loan.id}>
+                    <Card key={loan.id} className="dark:bg-[rgb(4,35,51)]">
                       <CardHeader>
                         <div className="flex items-center justify-between">
                           <div>

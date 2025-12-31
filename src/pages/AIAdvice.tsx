@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
+import { badgeColors, getBadgeColor } from "@/lib/colors";
 import {
   Lightbulb,
   TrendingUp,
@@ -34,13 +35,13 @@ export default function AIAdvice() {
           <h1 className="text-2xl font-bold">AI Financial Advisor</h1>
 
           {/* Health Score */}
-          <Card className="bg-gradient-to-br from-blue-50 to-transparent border-blue-200">
+          <Card className="bg-card border-primary/20">
             <CardContent className="pt-6">
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-2">Financial Health Score</p>
-                <p className="text-4xl font-bold text-blue-600 mb-2">78/100</p>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: "78%" }}></div>
+                <p className="text-4xl font-bold text-primary mb-2">78/100</p>
+                <div className="w-full bg-muted rounded-full h-2">
+                  <div className="bg-primary h-2 rounded-full" style={{ width: "78%" }}></div>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">Good - Room for improvement</p>
               </div>
@@ -82,7 +83,7 @@ export default function AIAdvice() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">AI Financial Advisor</h1>
@@ -96,13 +97,13 @@ export default function AIAdvice() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="lg:col-span-1"
               >
-                <Card className="bg-gradient-to-br from-blue-50 via-blue-50 to-purple-50 border-blue-200">
+                <Card className="bg-card border-primary/20">
                   <CardHeader>
                     <CardTitle>Financial Health Score</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="text-center">
-                      <div className="text-6xl font-bold text-blue-600 mb-2">78</div>
+                      <div className="text-6xl font-bold text-primary mb-2">78</div>
                       <p className="text-sm font-medium">Out of 100</p>
                     </div>
 
@@ -137,7 +138,7 @@ export default function AIAdvice() {
                       </div>
                     </div>
 
-                    <Alert className="bg-amber-50 border-amber-200">
+                    <Alert className="bg-card border-primary/20">
                       <AlertTriangle className="h-4 w-4" />
                       <AlertDescription className="text-sm">
                         Emergency fund below 3-month threshold. Aim for ₹1,50,000.
@@ -155,7 +156,7 @@ export default function AIAdvice() {
                 className="lg:col-span-2 space-y-4"
               >
                 {/* Spend Optimizer */}
-                <Card className="border-amber-200 bg-amber-50/50">
+                <Card className="border-primary/20 bg-card/50 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-2">
@@ -165,7 +166,7 @@ export default function AIAdvice() {
                           <CardDescription>Monthly savings potential</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-amber-600">Savings: ₹5,000</Badge>
+                      <Badge className="bg-primary">Savings: ₹5,000</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -176,36 +177,36 @@ export default function AIAdvice() {
                         { name: "Coffee Budget", current: "₹3,000/mo", optimize: "→ ₹2,000/mo", save: "₹1,000" },
                         { name: "Eating Out", current: "₹4,500/mo", optimize: "→ ₹3,500/mo", save: "₹1,000" },
                       ].map((item, i) => (
-                        <div key={i} className="p-3 rounded-lg border bg-white text-sm">
+                        <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20 text-sm">
                           <p className="font-medium">{item.name}</p>
                           <div className="flex justify-between text-xs text-muted-foreground mt-1">
                             <span>{item.current}</span>
-                            <span className="text-green-600 font-medium">{item.optimize}</span>
+                            <span className="text-green-600 dark:text-green-500 font-medium">{item.optimize}</span>
                           </div>
-                          <p className="text-xs text-green-600 font-medium mt-1">💚 Save {item.save}</p>
+                          <p className="text-xs text-green-600 dark:text-green-500 font-medium mt-1">💚 Save {item.save}</p>
                         </div>
                       ))}
                     </div>
-                    <Button className="w-full bg-amber-600 hover:bg-amber-700">Implement Suggestions</Button>
+                    <Button className="w-full">Implement Suggestions</Button>
                   </CardContent>
                 </Card>
 
                 {/* Debt Strategy */}
-                <Card className="border-purple-200 bg-purple-50/50">
+                <Card className="border-primary/20 bg-card/50 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-2">
-                        <Brain className="w-5 h-5 text-purple-600" />
+                        <Brain className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle className="text-lg">AI Debt Avalanche Strategy</CardTitle>
                           <CardDescription>Auto-generated payoff plan</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-purple-600">Save ₹23,000 Interest</Badge>
+                      <Badge className="bg-primary">Save ₹23,000 Interest</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="bg-white p-3 rounded-lg border space-y-2 text-sm">
+                    <div className="bg-card/50 p-3 rounded-lg border border-primary/20 space-y-2 text-sm">
                       <p className="font-medium">Recommended Payment Order:</p>
                       <div className="space-y-1 text-xs text-muted-foreground">
                         <p>1. Credit Card (18% interest) - Pay ₹20,000/month</p>
@@ -213,7 +214,7 @@ export default function AIAdvice() {
                         <p>3. Education Loan (5% interest) - Minimum payment</p>
                       </div>
                     </div>
-                    <Button className="w-full bg-purple-600 hover:bg-purple-700">Apply Strategy</Button>
+                    <Button className="w-full bg-primary">Apply Strategy</Button>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -222,10 +223,10 @@ export default function AIAdvice() {
             {/* Risk Alerts & Automation */}
             <div className="grid gap-6 lg:grid-cols-2">
               {/* Predictive Risk Alerts */}
-              <Card className="border-red-200">
+              <Card className="border-destructive/20 dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5 text-red-600" />
+                    <AlertTriangle className="w-5 h-5 text-destructive dark:text-red-400" />
                     <CardTitle>Predictive Risk Alerts</CardTitle>
                   </div>
                 </CardHeader>
@@ -235,7 +236,7 @@ export default function AIAdvice() {
                     { risk: "Debt-to-income ratio increasing", severity: "Medium", action: "Reduce new borrowing" },
                     { risk: "Subscription creep detected", severity: "Low", action: "Review subscriptions" },
                   ].map((item, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-red-50/30">
+                    <div key={i} className="p-3 rounded-lg border bg-destructive/5">
                       <div className="flex justify-between items-start">
                         <div>
                           <p className="font-medium text-sm">{item.risk}</p>
@@ -245,10 +246,10 @@ export default function AIAdvice() {
                           variant="outline"
                           className={
                             item.severity === "High"
-                              ? "bg-red-100 text-red-700"
+                              ? badgeColors.error
                               : item.severity === "Medium"
-                              ? "bg-amber-100 text-amber-700"
-                              : "bg-green-100 text-green-700"
+                              ? badgeColors.warning
+                              : badgeColors.success
                           }
                         >
                           {item.severity}
@@ -260,24 +261,24 @@ export default function AIAdvice() {
               </Card>
 
               {/* Savings Automation */}
-              <Card className="border-green-200">
+              <Card className="border-primary/20 dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Zap className="w-5 h-5 text-green-600" />
+                    <Zap className="w-5 h-5 text-primary" />
                     <CardTitle>AI Savings Automation</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="p-3 rounded-lg border bg-green-50/30">
+                  <div className="p-3 rounded-lg border bg-card border-primary/20">
                     <div className="flex items-center justify-between mb-2">
                       <p className="font-medium text-sm">Salary Day Auto-Transfer</p>
-                      <Badge className="bg-green-600">Active</Badge>
+                      <Badge className="bg-primary">Active</Badge>
                     </div>
-                    <p className="text-2xl font-bold text-green-600">₹10,000</p>
+                    <p className="text-2xl font-bold text-green-600 dark:text-green-500">₹10,000</p>
                     <p className="text-xs text-muted-foreground mt-1">Every 1st of month → Savings Account</p>
                   </div>
 
-                  <div className="p-3 rounded-lg border bg-blue-50/30">
+                  <div className="p-3 rounded-lg border bg-card border-primary/20">
                     <div className="flex items-center justify-between mb-2">
                       <p className="font-medium text-sm">Round-up Savings</p>
                       <Badge variant="outline">Suggested</Badge>
@@ -288,7 +289,7 @@ export default function AIAdvice() {
                     </Button>
                   </div>
 
-                  <div className="p-3 rounded-lg border bg-purple-50/30">
+                  <div className="p-3 rounded-lg border bg-primary/5">
                     <div className="flex items-center justify-between mb-2">
                       <p className="font-medium text-sm">Goal-Based Savings</p>
                       <Badge variant="outline">Setup</Badge>

@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Utensils, ShoppingBag, Zap, Smartphone, Heart, BookOpen, TrendingUp } from "lucide-react";
 import { BarChart, Bar, PieChart as PieChartComponent, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { categoryColors, getIconColor } from "@/lib/colors";
 
 const expenseData = [
   { month: "Jan", food: 14200, shopping: 11800, utilities: 5900, transport: 7500, health: 2100, education: 7500 },
@@ -27,7 +28,7 @@ const expenseCategories = [
     id: 1,
     name: "Food & Dining",
     icon: Utensils,
-    color: "bg-orange-100 text-orange-800",
+    color: categoryColors.food,
     allocated: 15000,
     spent: 14200,
     transactions: 28,
@@ -36,7 +37,7 @@ const expenseCategories = [
     id: 2,
     name: "Shopping",
     icon: ShoppingBag,
-    color: "bg-pink-100 text-pink-800",
+    color: categoryColors.shopping,
     allocated: 12000,
     spent: 11800,
     transactions: 15,
@@ -45,7 +46,7 @@ const expenseCategories = [
     id: 3,
     name: "Utilities",
     icon: Zap,
-    color: "bg-yellow-100 text-yellow-800",
+    color: categoryColors.utilities,
     allocated: 6000,
     spent: 5900,
     transactions: 5,
@@ -54,7 +55,7 @@ const expenseCategories = [
     id: 4,
     name: "Transportation",
     icon: TrendingUp,
-    color: "bg-blue-100 text-blue-800",
+    color: categoryColors.transportation,
     allocated: 8000,
     spent: 7500,
     transactions: 12,
@@ -63,7 +64,7 @@ const expenseCategories = [
     id: 5,
     name: "Health & Fitness",
     icon: Heart,
-    color: "bg-red-100 text-red-800",
+    color: categoryColors.health,
     allocated: 4000,
     spent: 2100,
     transactions: 8,
@@ -72,7 +73,7 @@ const expenseCategories = [
     id: 6,
     name: "Education",
     icon: BookOpen,
-    color: "bg-purple-100 text-purple-800",
+    color: categoryColors.education,
     allocated: 8000,
     spent: 7500,
     transactions: 6,
@@ -136,12 +137,12 @@ export default function Expenses() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onMenuToggle={() => toggleSidebar()} />
+      <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -292,7 +293,7 @@ export default function Expenses() {
                             </div>
                             <div className="w-full bg-muted rounded-full h-2">
                               <div
-                                className={`h-2 rounded-full transition-all ${parseInt(percentage) > 100 ? "bg-red-500" : "bg-emerald-500"}`}
+                                className={`h-2 rounded-full transition-all ${parseInt(percentage) > 100 ? "bg-red-500 dark:bg-red-600" : "bg-emerald-500 dark:bg-emerald-600"}`}
                                 style={{ width: `${Math.min(parseInt(percentage), 100)}%` }}
                               />
                             </div>
@@ -324,7 +325,7 @@ export default function Expenses() {
                             </div>
                           </div>
                           <div className="text-right">
-                            <p className="font-semibold text-red-600">-₹{expense.amount.toLocaleString()}</p>
+                            <p className="font-semibold text-red-600 dark:text-red-500">-₹{expense.amount.toLocaleString()}</p>
                             <p className="text-xs text-muted-foreground">{expense.date}</p>
                           </div>
                         </div>

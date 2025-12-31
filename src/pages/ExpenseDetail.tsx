@@ -65,10 +65,10 @@ export default function ExpenseDetail() {
 
         <div className="px-4 py-4 space-y-4">
           {/* Expense Card */}
-          <Card className="p-4 bg-gradient-to-br from-red/10 to-orange/10">
+          <Card className="p-4 bg-gradient-to-br from-destructive/10 to-amber/10">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-muted-foreground">Amount</span>
-              <Badge className="bg-orange-500">{expense.tag}</Badge>
+              <Badge className="bg-amber-600 dark:bg-amber-500">{expense.tag}</Badge>
             </div>
             <p className="text-2xl font-bold">₹{expense.amount.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground mt-1">{expense.frequency}</p>
@@ -83,7 +83,7 @@ export default function ExpenseDetail() {
                 <p className="text-xs text-muted-foreground">Category</p>
                 <p className="font-semibold">{expense.category}</p>
               </div>
-              <Tag className="h-5 w-5 text-orange-500" />
+              <Tag className="h-5 w-5 text-amber-600 dark:text-amber-500" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -91,7 +91,7 @@ export default function ExpenseDetail() {
                 <p className="text-xs text-muted-foreground">Due Date</p>
                 <p className="font-semibold">{expense.dueDate}</p>
               </div>
-              <Calendar className="h-5 w-5 text-red-500" />
+              <Calendar className="h-5 w-5 text-destructive dark:text-red-400" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -99,7 +99,7 @@ export default function ExpenseDetail() {
                 <p className="text-xs text-muted-foreground">Next Payment</p>
                 <p className="font-semibold">{expense.nextPaymentDate}</p>
               </div>
-              <TrendingDown className="h-5 w-5 text-red-500" />
+              <TrendingDown className="h-5 w-5 text-destructive dark:text-red-400" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -107,7 +107,7 @@ export default function ExpenseDetail() {
                 <p className="text-xs text-muted-foreground">Total Spent</p>
                 <p className="font-semibold">₹{(expense.totalSpent / 1000).toFixed(1)}K</p>
               </div>
-              <TrendingDown className="h-5 w-5 text-orange-500" />
+              <TrendingDown className="h-5 w-5 text-amber-600 dark:text-amber-500" />
             </div>
           </Card>
 
@@ -173,7 +173,7 @@ export default function ExpenseDetail() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
               <Button variant="ghost" onClick={() => navigate("/expenses")} className="mb-4">
@@ -186,17 +186,17 @@ export default function ExpenseDetail() {
                   <h1 className="text-h1 font-bold">{expense.title}</h1>
                   <p className="text-muted-foreground">Expense Details</p>
                 </div>
-                <Badge className="bg-orange-500">{expense.tag}</Badge>
+                <Badge className="bg-amber-600 dark:bg-amber-500">{expense.tag}</Badge>
               </div>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {/* Main Content */}
               <div className="md:col-span-2 space-y-6">
-                <Card className="p-6 bg-gradient-to-br from-red/10 to-orange/10">
+                <Card className="p-6 bg-gradient-to-br from-destructive/10 to-amber/10">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-muted-foreground">Monthly Expense</span>
-                    <TrendingDown className="h-5 w-5 text-red-500" />
+                    <TrendingDown className="h-5 w-5 text-destructive dark:text-red-400" />
                   </div>
                   <p className="text-h1 font-bold">₹{expense.amount.toLocaleString()}</p>
                   <p className="text-sm text-muted-foreground mt-2">{expense.frequency}</p>
@@ -220,7 +220,7 @@ export default function ExpenseDetail() {
                     </div>
                     <div className="p-4 bg-secondary/50 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-1">Status</p>
-                      <Badge className="bg-green-500">{expense.status}</Badge>
+                      <Badge className="bg-green-600 dark:bg-green-500">{expense.status}</Badge>
                     </div>
                   </div>
                 </Card>

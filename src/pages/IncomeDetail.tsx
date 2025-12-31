@@ -65,10 +65,10 @@ export default function IncomeDetail() {
 
         <div className="px-4 py-4 space-y-4">
           {/* Income Card */}
-          <Card className="p-4 bg-gradient-to-br from-blue/10 to-cyan/10">
+          <Card className="p-4 bg-gradient-to-br from-primary/10 to-cyan/10">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-muted-foreground">Amount</span>
-              <Badge className="bg-blue-500">Active</Badge>
+              <Badge className="bg-primary dark:bg-primary">Active</Badge>
             </div>
             <p className="text-2xl font-bold">₹{income.amount.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground mt-1">{income.frequency}</p>
@@ -83,7 +83,7 @@ export default function IncomeDetail() {
                 <p className="text-xs text-muted-foreground">Source</p>
                 <p className="font-semibold">{income.source}</p>
               </div>
-              <User className="h-5 w-5 text-blue-500" />
+              <User className="h-5 w-5 text-primary dark:text-primary" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -91,7 +91,7 @@ export default function IncomeDetail() {
                 <p className="text-xs text-muted-foreground">Category</p>
                 <p className="font-semibold">{income.category}</p>
               </div>
-              <TrendingUp className="h-5 w-5 text-green-500" />
+              <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-500" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -99,7 +99,7 @@ export default function IncomeDetail() {
                 <p className="text-xs text-muted-foreground">Start Date</p>
                 <p className="font-semibold">{income.startDate}</p>
               </div>
-              <Calendar className="h-5 w-5 text-purple-500" />
+              <Calendar className="h-5 w-5 text-primary dark:text-primary" />
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -173,7 +173,7 @@ export default function IncomeDetail() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
               <Button variant="ghost" onClick={() => navigate("/income")} className="mb-4">
@@ -186,17 +186,17 @@ export default function IncomeDetail() {
                   <h1 className="text-h1 font-bold">{income.title}</h1>
                   <p className="text-muted-foreground">Income Details</p>
                 </div>
-                <Badge className="bg-blue-500">Active</Badge>
+                <Badge className="bg-primary dark:bg-primary">Active</Badge>
               </div>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {/* Main Content */}
               <div className="md:col-span-2 space-y-6">
-                <Card className="p-6 bg-gradient-to-br from-blue/10 to-cyan/10">
+                <Card className="p-6 bg-gradient-to-br from-primary/10 to-cyan/10">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-muted-foreground">Monthly Income</span>
-                    <TrendingUp className="h-5 w-5 text-blue-500" />
+                    <TrendingUp className="h-5 w-5 text-primary dark:text-primary" />
                   </div>
                   <p className="text-h1 font-bold">₹{income.amount.toLocaleString()}</p>
                   <p className="text-sm text-muted-foreground mt-2">{income.frequency}</p>

@@ -34,21 +34,21 @@ function JobCard({ job, onApply, onSave, isSaved, isApplied }: any) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="p-5 rounded-lg border border-gray-200 bg-white hover:border-blue-300 hover:shadow-md transition-all"
+      className="p-5 rounded-lg border bg-card hover:border-primary/50 hover:shadow-md transition-all border-primary/10"
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-lg text-gray-900 truncate">
+          <h3 className="font-semibold text-lg text-foreground truncate">
             {job.title}
           </h3>
-          <p className="text-sm text-gray-600 truncate">{job.company}</p>
+          <p className="text-sm text-muted-foreground truncate">{job.company}</p>
         </div>
         <Badge variant={job.type === "Full-time" ? "default" : "secondary"} className="text-xs flex-shrink-0">
           {job.type}
         </Badge>
       </div>
 
-      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
+      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
         <div className="flex items-center gap-1">
           <MapPin className="w-4 h-4" />
           <span>{job.location}</span>
@@ -63,7 +63,7 @@ function JobCard({ job, onApply, onSave, isSaved, isApplied }: any) {
         </div>
       </div>
 
-      <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+      <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
         {job.description}
       </p>
 
@@ -104,7 +104,7 @@ function JobCard({ job, onApply, onSave, isSaved, isApplied }: any) {
           onClick={() => onSave(job.id)}
         >
           <Bookmark
-            className={`w-4 h-4 ${isSaved ? "fill-blue-600 text-blue-600" : "text-gray-400"}`}
+            className={`w-4 h-4 ${isSaved ? "fill-primary text-primary" : "text-muted-foreground"}`}
           />
         </Button>
         <Button
@@ -113,7 +113,7 @@ function JobCard({ job, onApply, onSave, isSaved, isApplied }: any) {
           className="w-12 p-0"
           onClick={() => window.open(job.externalUrl || "#")}
         >
-          <Share2 className="w-4 h-4 text-gray-400" />
+          <Share2 className="w-4 h-4 text-muted-foreground" />
         </Button>
       </div>
     </motion.div>
@@ -168,7 +168,7 @@ export default function Jobs() {
           <div className="grid grid-cols-2 gap-3">
             <Card>
               <CardContent className="pt-4">
-                <div className="text-2xl font-bold text-blue-600">{stats.matchingJobs}</div>
+                <div className="text-2xl font-bold text-primary">{stats.matchingJobs}</div>
                 <p className="text-xs text-muted-foreground">Matching Jobs</p>
               </CardContent>
             </Card>
@@ -237,7 +237,7 @@ export default function Jobs() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             {/* Header */}
             <motion.div
@@ -260,7 +260,7 @@ export default function Jobs() {
                       <p className="text-sm text-muted-foreground">Matching Jobs</p>
                       <p className="text-3xl font-bold mt-2">{stats.matchingJobs}</p>
                     </div>
-                    <TrendingUp className="h-8 w-8 text-blue-600 opacity-80" />
+                    <TrendingUp className="h-8 w-8 text-primary opacity-80" />
                   </div>
                 </CardContent>
               </Card>
@@ -303,7 +303,7 @@ export default function Jobs() {
             </div>
 
             {/* Filters Section */}
-            <Card className="mb-6 border-blue-200 bg-blue-50/50">
+            <Card className="mb-6 border-primary/20 bg-card">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -356,7 +356,7 @@ export default function Jobs() {
                         <SelectValue placeholder="All types" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Types</SelectItem>
+                        <SelectItem value="All Types">All Types</SelectItem>
                         <SelectItem value="Full-time">Full-time</SelectItem>
                         <SelectItem value="Part-time">Part-time</SelectItem>
                         <SelectItem value="Freelance">Freelance</SelectItem>
@@ -376,7 +376,7 @@ export default function Jobs() {
                         <SelectValue placeholder="All salaries" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">All Salaries</SelectItem>
+                        <SelectItem value="All Salaries">All Salaries</SelectItem>
                         <SelectItem value="0-50k">$0 - $50k</SelectItem>
                         <SelectItem value="50k-100k">$50k - $100k</SelectItem>
                         <SelectItem value="100k-150k">$100k - $150k</SelectItem>

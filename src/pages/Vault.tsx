@@ -12,24 +12,22 @@ import { badgeColors } from "@/lib/colors";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import {
-  FileText,
+  Lock,
   TrendingUp,
-  Download,
   CheckCircle,
   AlertCircle,
   ArrowUpRight,
   ArrowDownRight,
-  BarChart3,
+  Key,
   Star,
   MoreVertical,
   Gauge,
   DollarSign,
   Gift,
-  Calendar,
+  Eye,
 } from "lucide-react";
 
-
-export default function Reports() {
+export default function Vault() {
   const { isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useSidebar();
   const isMobile = useIsMobile();
 
@@ -38,28 +36,30 @@ export default function Reports() {
       <div className="min-h-screen bg-background pb-20">
         <MobileHeader />
         <div className="space-y-4 p-4">
-          <h1 className="text-2xl font-bold">Reports</h1>
+          <h1 className="text-2xl font-bold">Secure Vault</h1>
 
-          {/* Reports List */}
+          {/* Vault Info */}
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold">Download Reports</h3>
+            <h3 className="text-sm font-semibold">Your Documents</h3>
             {[
-              { title: "Monthly Summary", date: "Dec 2025", type: "PDF" },
-              { title: "Annual Report", date: "2025", type: "PDF" },
-            ].map((report, i) => (
+              { title: "Bank Statements", date: "5 files", size: "12 MB" },
+              { title: "Loan Documents", date: "8 files", size: "25 MB" },
+            ].map((doc, i) => (
               <Card key={i}>
                 <CardContent className="pt-3">
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="text-sm font-semibold mb-1">{report.title}</p>
-                      <p className="text-xs text-muted-foreground">{report.date}</p>
+                      <p className="text-sm font-semibold mb-1">{doc.title}</p>
+                      <p className="text-xs text-muted-foreground">{doc.date}</p>
                     </div>
-                    <Button size="sm" variant="outline">Download</Button>
+                    <p className="text-xs font-semibold">{doc.size}</p>
                   </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+
+          <Button className="w-full">Upload Document</Button>
         </div>
         <BottomNav />
       </div>
@@ -75,28 +75,28 @@ export default function Reports() {
         <main className="flex-1 p-6 pt-20">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-              <h1 className="text-4xl font-bold">Financial Reports</h1>
+              <h1 className="text-4xl font-bold">Secure Vault</h1>
               <p className="text-muted-foreground mt-2">
-                Generate, download, and analyze your financial reports with detailed insights
+                Store and manage your important financial documents in an encrypted vault
               </p>
             </motion.div>
 
-            {/* Reports Alert */}
+            {/* Vault Alert */}
             <Alert className="mb-6 border-primary/20 bg-card">
-              <FileText className="h-4 w-4 text-primary" />
+              <Lock className="h-4 w-4 text-primary" />
               <AlertDescription>
-                <strong>📊 New Reports Available!</strong> Your monthly summary for December is ready.
-                Download now for detailed financial analysis.
+                <strong>🔒 Military-Grade Encryption!</strong> All documents are encrypted with AES-256.
+                Your data is 100% secure and private.
               </AlertDescription>
             </Alert>
 
             {/* KPI Stats */}
             <div className="grid gap-6 lg:grid-cols-4 mb-6">
               {[
-                { label: "Total Reports", value: "24", icon: FileText, color: "green" },
-                { label: "Last Generated", value: "Dec 31", icon: Calendar, color: "blue" },
-                { label: "Export Formats", value: "5+", icon: Download, color: "amber" },
-                { label: "Data Accuracy", value: "100%", icon: CheckCircle, color: "purple" },
+                { label: "Total Documents", value: "47", icon: Lock, color: "green" },
+                { label: "Total Storage", value: "245 MB", icon: DollarSign, color: "blue" },
+                { label: "Encryption Status", value: "Active", icon: CheckCircle, color: "amber" },
+                { label: "Last Upload", value: "2h ago", icon: Eye, color: "purple" },
               ].map((stat, i) => {
                 const Icon = stat.icon;
                 return (
@@ -124,77 +124,80 @@ export default function Reports() {
 
             {/* Main Grid */}
             <div className="grid gap-6 lg:grid-cols-3">
-              {/* Left: Reports */}
+              {/* Left: Vault Content */}
               <div className="lg:col-span-2 space-y-6">
-                {/* Available Reports */}
+                {/* Document Categories */}
                 <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <FileText className="w-5 h-5 text-primary" />
+                        <Lock className="w-5 h-5 text-primary" />
                         <div>
-                          <CardTitle>Available Reports</CardTitle>
-                          <CardDescription>Download in multiple formats</CardDescription>
+                          <CardTitle>Document Categories</CardTitle>
+                          <CardDescription>Organized by type</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-primary">8 Reports</Badge>
+                      <Badge className="bg-primary">6 Categories</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {[
                       {
-                        name: "Monthly Summary Report",
-                        month: "December 2025",
-                        format: "PDF, CSV, Excel",
-                        size: "2.4 MB",
-                        generated: "2 hours ago",
+                        name: "Bank Statements",
+                        count: "12 files",
+                        size: "45 MB",
+                        updated: "2 hours ago",
                       },
                       {
-                        name: "Annual Financial Report",
-                        month: "Year 2025",
-                        format: "PDF, Excel",
-                        size: "5.8 MB",
-                        generated: "1 day ago",
+                        name: "Loan Documents",
+                        count: "18 files",
+                        size: "78 MB",
+                        updated: "3 days ago",
                       },
                       {
-                        name: "Debt Analysis Report",
-                        month: "December 2025",
-                        format: "PDF, CSV",
-                        size: "1.2 MB",
-                        generated: "3 hours ago",
+                        name: "Tax Documents",
+                        count: "8 files",
+                        size: "32 MB",
+                        updated: "1 week ago",
                       },
-                    ].map((report, i) => (
+                      {
+                        name: "Insurance Documents",
+                        count: "5 files",
+                        size: "28 MB",
+                        updated: "2 weeks ago",
+                      },
+                    ].map((category, i) => (
                       <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
                         <div className="flex items-start justify-between mb-3">
                           <div>
-                            <p className="font-semibold">{report.name}</p>
-                            <p className="text-xs text-muted-foreground mt-1">{report.month}</p>
+                            <p className="font-semibold">{category.name}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{category.count}</p>
                           </div>
                           <Badge variant="outline">
-                            <FileText className="w-3 h-3 mr-1" />
-                            {report.size}
+                            <Lock className="w-3 h-3 mr-1" />
+                            Encrypted
                           </Badge>
                         </div>
 
                         <div className="grid grid-cols-3 gap-2 mb-3 text-sm">
                           <div>
-                            <p className="text-xs text-muted-foreground">Format</p>
-                            <p className="font-semibold text-xs">{report.format}</p>
+                            <p className="text-xs text-muted-foreground">Size</p>
+                            <p className="font-semibold">{category.size}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-muted-foreground">Generated</p>
-                            <p className="font-semibold text-xs">{report.generated}</p>
+                            <p className="text-xs text-muted-foreground">Updated</p>
+                            <p className="font-semibold text-xs">{category.updated}</p>
                           </div>
                           <div>
-                            <p className="text-xs text-muted-foreground">Status</p>
-                            <p className="font-semibold text-xs text-primary">Ready</p>
+                            <p className="text-xs text-muted-foreground">Access</p>
+                            <p className="font-semibold text-xs text-primary">View</p>
                           </div>
                         </div>
 
                         <div className="flex gap-2">
-                          <Button className="flex-1 bg-primary">Download</Button>
+                          <Button className="flex-1 bg-primary">Open</Button>
                           <Button variant="outline" className="flex-1">
-                            Share
+                            Download
                           </Button>
                         </div>
                       </div>
@@ -202,87 +205,113 @@ export default function Reports() {
                   </CardContent>
                 </Card>
 
-                {/* Report Templates */}
+                {/* Recent Uploads */}
                 <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <BarChart3 className="w-5 h-5 text-primary" />
+                        <ArrowUpRight className="w-5 h-5 text-primary" />
                         <div>
-                          <CardTitle>Report Templates</CardTitle>
-                          <CardDescription>Generate custom reports</CardDescription>
+                          <CardTitle>Recent Uploads</CardTitle>
+                          <CardDescription>Latest documents added</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-primary">5 Templates</Badge>
+                      <Badge className="bg-primary">Latest</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {[
                       {
-                        name: "Comprehensive Financial Report",
-                        desc: "Complete financial summary with all transactions",
-                        fields: ["Debts", "Income", "Expenses", "Goals"],
+                        name: "ICICI_Statement_Dec2025.pdf",
+                        category: "Bank Statements",
+                        size: "2.5 MB",
+                        uploaded: "2 hours ago",
+                        verified: true,
                       },
                       {
-                        name: "Tax Filing Report",
-                        desc: "Interest paid summary for tax deductions",
-                        fields: ["Interest Paid", "Principal", "Period"],
+                        name: "Home_Loan_Agreement.pdf",
+                        category: "Loan Documents",
+                        size: "3.2 MB",
+                        uploaded: "1 day ago",
+                        verified: true,
                       },
                       {
-                        name: "Budget Analysis Report",
-                        desc: "Budget performance and spending analysis",
-                        fields: ["Budget vs Actual", "Categories", "Trends"],
+                        name: "Tax_Return_2024.pdf",
+                        category: "Tax Documents",
+                        size: "1.8 MB",
+                        uploaded: "3 days ago",
+                        verified: true,
                       },
-                    ].map((template, i) => (
+                      {
+                        name: "Health_Insurance_Policy.pdf",
+                        category: "Insurance",
+                        size: "2.1 MB",
+                        uploaded: "1 week ago",
+                        verified: true,
+                      },
+                    ].map((doc, i) => (
                       <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20">
-                        <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-start justify-between mb-3">
                           <div>
-                            <p className="font-semibold">{template.name}</p>
-                            <p className="text-xs text-muted-foreground">{template.desc}</p>
+                            <p className="font-semibold">{doc.name}</p>
+                            <p className="text-xs text-muted-foreground mt-1">{doc.category}</p>
+                          </div>
+                          {doc.verified && <CheckCircle className="w-5 h-5 text-primary" />}
+                        </div>
+
+                        <div className="grid grid-cols-3 gap-2 mb-3 text-sm">
+                          <div>
+                            <p className="text-xs text-muted-foreground">Size</p>
+                            <p className="font-semibold">{doc.size}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Uploaded</p>
+                            <p className="font-semibold text-xs">{doc.uploaded}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs text-muted-foreground">Status</p>
+                            <Badge className="text-xs">Secure</Badge>
                           </div>
                         </div>
 
-                        <div className="mb-3 flex flex-wrap gap-1">
-                          {template.fields.map((field) => (
-                            <Badge key={field} variant="outline" className="text-xs">
-                              {field}
-                            </Badge>
-                          ))}
-                        </div>
-
-                        <Button className="w-full bg-primary">Generate Report</Button>
+                        <Button variant="outline" className="w-full">
+                          <Eye className="w-4 h-4 mr-2" />
+                          View Document
+                        </Button>
                       </div>
                     ))}
                   </CardContent>
                 </Card>
 
-                {/* Export History */}
+                {/* Security Details */}
                 <Card className="border-purple-200 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Download className="w-5 h-5 text-purple-600" />
+                        <Key className="w-5 h-5 text-purple-600" />
                         <div>
-                          <CardTitle>Export History</CardTitle>
-                          <CardDescription>Your recent downloads</CardDescription>
+                          <CardTitle>Security Features</CardTitle>
+                          <CardDescription>Your vault is protected by:</CardDescription>
                         </div>
                       </div>
-                      <Badge className={badgeColors.info}>12 Exports</Badge>
+                      <Badge className={badgeColors.info}>Enterprise</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {[
-                      { name: "Monthly Report", date: "Dec 31, 2025", format: "PDF" },
-                      { name: "Annual Summary", date: "Dec 30, 2025", format: "Excel" },
-                      { name: "Tax Report", date: "Dec 28, 2025", format: "PDF" },
-                      { name: "Budget Analysis", date: "Dec 27, 2025", format: "CSV" },
+                      { feature: "AES-256 Encryption", desc: "Military-grade encryption standard" },
+                      { feature: "End-to-End Encryption", desc: "Only you can decrypt your files" },
+                      { feature: "Secure Backup", desc: "Automatic daily backups" },
+                      { feature: "Access Logs", desc: "Complete audit trail of all access" },
+                      { feature: "Two-Factor Authentication", desc: "Extra layer of security" },
+                      { feature: "Data Privacy", desc: "GDPR and privacy compliant" },
                     ].map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20 flex items-center justify-between">
+                      <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20 flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                         <div>
-                          <p className="text-sm font-medium">{item.name}</p>
-                          <p className="text-xs text-muted-foreground">{item.date}</p>
+                          <p className="text-sm font-medium">{item.feature}</p>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
                         </div>
-                        <Badge variant="outline">{item.format}</Badge>
                       </div>
                     ))}
                   </CardContent>
@@ -291,34 +320,33 @@ export default function Reports() {
 
               {/* Sidebar */}
               <div className="space-y-6">
-                {/* Report Settings */}
+                {/* Storage */}
                 <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
-                    <CardTitle className="text-lg">Report Settings</CardTitle>
+                    <CardTitle className="text-lg">Storage</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="p-3 rounded-lg border bg-card/50 border-primary/20">
-                      <div className="flex items-center justify-between mb-1">
-                        <p className="text-sm font-medium">Default Format</p>
-                        <Badge className="bg-primary">PDF</Badge>
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-sm font-medium">Used</p>
+                        <Badge className="bg-primary">245 MB</Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground">Currently set to PDF format</p>
+                      <Progress value={49} className="h-2" />
+                      <p className="text-xs text-muted-foreground mt-2">245 MB of 500 MB</p>
                     </div>
 
                     <div className="space-y-2 text-sm">
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Include</p>
-                        <p className="font-semibold">Charts & Graphs</p>
+                        <p className="text-xs text-muted-foreground mb-1">Plan</p>
+                        <p className="font-semibold">Pro Plan</p>
                       </div>
                       <div>
-                        <p className="text-xs text-muted-foreground mb-1">Auto-Export</p>
-                        <p className="font-semibold">Monthly</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1">Recipient Email</p>
-                        <p className="font-semibold text-xs">user@example.com</p>
+                        <p className="text-xs text-muted-foreground mb-1">Upgrade Available</p>
+                        <p className="font-semibold">1 TB Plan</p>
                       </div>
                     </div>
+
+                    <Button className="w-full bg-primary mt-2">Upgrade Storage</Button>
                   </CardContent>
                 </Card>
 
@@ -329,10 +357,10 @@ export default function Reports() {
                   </CardHeader>
                   <CardContent className="space-y-2">
                     {[
-                      "Generate New Report",
-                      "Schedule Auto-Export",
-                      "Share Report",
-                      "Email Report",
+                      "Upload Document",
+                      "Manage Categories",
+                      "View Access Logs",
+                      "Security Settings",
                     ].map((action) => (
                       <Button key={action} variant="outline" className="w-full justify-start text-xs">
                         {action}
@@ -341,38 +369,38 @@ export default function Reports() {
                   </CardContent>
                 </Card>
 
-                {/* Report Statistics */}
+                {/* Statistics */}
                 <Card>
                   <CardHeader>
                     <CardTitle className="text-lg">Statistics</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Total Generated</span>
-                      <span className="font-bold">127</span>
+                      <span className="text-muted-foreground">Total Documents</span>
+                      <span className="font-bold">47</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-muted-foreground">This Month</span>
                       <span className="font-bold">12</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Storage Used</span>
-                      <span className="font-bold">45 MB</span>
+                      <span className="text-muted-foreground">Total Access</span>
+                      <span className="font-bold">234</span>
                     </div>
                   </CardContent>
                 </Card>
 
-                {/* Help */}
+                {/* Support */}
                 <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
-                    <CardTitle className="text-lg">Need Help?</CardTitle>
+                    <CardTitle className="text-lg">Help & Support</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2 text-xs">
                     <Button variant="outline" className="w-full justify-start">
-                      How to generate reports?
+                      How to upload files?
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
-                      Report file formats
+                      Security FAQ
                     </Button>
                     <Button variant="outline" className="w-full justify-start">
                       Contact Support

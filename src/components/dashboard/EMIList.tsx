@@ -31,7 +31,7 @@ export function EMIList({ emis, className }: EMIListProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.36, delay: 0.4 }}
-      className={cn("rounded-2xl border bg-card p-6 shadow-card", className)}
+      className={cn("rounded-2xl border bg-card p-6 shadow-card dark:bg-[rgb(6,43,63)]", className)}
     >
       <div className="flex items-center justify-between mb-5">
         <div>

@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { badgeColors } from "@/lib/colors";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -49,7 +50,7 @@ export default function Gamification() {
             <Card>
               <CardContent className="pt-4">
                 <p className="text-xs text-muted-foreground">Coins</p>
-                <p className="text-3xl font-bold text-yellow-600">2,450</p>
+                <p className="text-3xl font-bold text-amber-600 dark:text-amber-500">2,450</p>
                 <Badge variant="outline" className="mt-2">+280 this week</Badge>
               </CardContent>
             </Card>
@@ -59,7 +60,7 @@ export default function Gamification() {
           <Card>
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-2">
-                <Flame className="w-5 h-5 text-orange-600" />
+                <Flame className="w-5 h-5 text-amber-600 dark:text-amber-500" />
                 <p className="font-semibold">Streak</p>
               </div>
               <p className="text-3xl font-bold">23</p>
@@ -97,7 +98,7 @@ export default function Gamification() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Rewards & Challenges</h1>
@@ -107,8 +108,8 @@ export default function Gamification() {
             </motion.div>
 
             {/* Achievement Alert */}
-            <Alert className="mb-6 bg-green-50 border-green-200">
-              <Trophy className="h-4 w-4 text-green-600" />
+            <Alert className="mb-6 bg-card border-primary/20">
+              <Trophy className="h-4 w-4 text-green-600 dark:text-green-500" />
               <AlertDescription>
                 <strong>🎉 Achievement Unlocked!</strong> You completed "No Spend Sunday" and earned
                 <strong> 50 coins</strong>!
@@ -153,17 +154,17 @@ export default function Gamification() {
               {/* Challenges */}
               <div className="lg:col-span-2 space-y-6">
                 {/* Active Challenges */}
-                <Card className="border-blue-200 bg-blue-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Target className="w-5 h-5 text-blue-600" />
+                        <Target className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Active Challenges</CardTitle>
                           <CardDescription>Complete to earn rewards</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-blue-600">3 Active</Badge>
+                      <Badge className="bg-primary">3 Active</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
@@ -194,7 +195,7 @@ export default function Gamification() {
                         daysLeft: 7,
                       },
                     ].map((challenge, i) => (
-                      <div key={i} className="p-4 rounded-lg border bg-white">
+                      <div key={i} className="p-4 rounded-lg border bg-card/50">
                         <div className="flex items-start justify-between mb-3">
                           <div>
                             <p className="font-semibold">{challenge.name}</p>
@@ -221,7 +222,7 @@ export default function Gamification() {
                           <Progress value={challenge.progress} className="h-2" />
                         </div>
                         {challenge.completed ? (
-                          <Button className="w-full bg-green-600">
+                          <Button className="w-full bg-primary">
                             <CheckCircle className="w-4 h-4 mr-1" />
                             Completed
                           </Button>
@@ -236,17 +237,17 @@ export default function Gamification() {
                 </Card>
 
                 {/* Upcoming Challenges */}
-                <Card className="border-purple-200 bg-purple-50/30">
+                <Card className="border-primary/20 bg-primary/5 dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Zap className="w-5 h-5 text-purple-600" />
+                        <Zap className="w-5 h-5 text-primary" />
                         <div>
                           <CardTitle>Upcoming Challenges</CardTitle>
                           <CardDescription>Next challenges starting soon</CardDescription>
                         </div>
                       </div>
-                      <Button size="sm" className="bg-purple-600">New Challenge</Button>
+                      <Button size="sm" className="bg-primary">New Challenge</Button>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -255,7 +256,7 @@ export default function Gamification() {
                       { name: "Investment Challenge", reward: 250, starts: "Dec 8", difficulty: "Medium" },
                       { name: "Zero Junk Food Week", reward: 100, starts: "Dec 15", difficulty: "Easy" },
                     ].map((challenge, i) => (
-                      <div key={i} className="p-3 rounded-lg border bg-white flex items-center justify-between">
+                      <div key={i} className="p-3 rounded-lg border bg-card/50 flex items-center justify-between">
                         <div>
                           <p className="font-medium text-sm">{challenge.name}</p>
                           <p className="text-xs text-muted-foreground">
@@ -269,7 +270,7 @@ export default function Gamification() {
                 </Card>
 
                 {/* Daily Check-ins */}
-                <Card className="border-green-200 bg-green-50/30">
+                <Card className="border-primary/20 bg-card/50">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -279,7 +280,7 @@ export default function Gamification() {
                           <CardDescription>Return daily to earn bonuses</CardDescription>
                         </div>
                       </div>
-                      <Badge className="bg-green-600">Day 23</Badge>
+                      <Badge className="bg-primary">Day 23</Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -289,9 +290,9 @@ export default function Gamification() {
                           key={i}
                           className={`aspect-square flex items-center justify-center rounded-lg text-xs font-semibold ${
                             i < 23
-                              ? "bg-green-600 text-white"
+                              ? badgeColors.success
                               : i === 23
-                              ? "bg-blue-600 text-white border-2 border-blue-800"
+                              ? "bg-primary/60 text-white border-2 border-primary/80"
                               : "bg-muted text-muted-foreground"
                           }`}
                         >
@@ -299,13 +300,13 @@ export default function Gamification() {
                         </div>
                       ))}
                     </div>
-                    <div className="p-3 rounded-lg border bg-white mb-3">
+                    <div className="p-3 rounded-lg border bg-card/50 border-primary/20 mb-3">
                       <p className="text-sm font-medium mb-1">🔥 Current Bonus: +10 coins/day</p>
                       <p className="text-xs text-muted-foreground">
                         Reach day 30 for +50 bonus coins! Keep your streak alive.
                       </p>
                     </div>
-                    <Button className="w-full bg-green-600">Check In Today</Button>
+                    <Button className="w-full bg-primary">Check In Today</Button>
                   </CardContent>
                 </Card>
               </div>
@@ -313,14 +314,14 @@ export default function Gamification() {
               {/* Sidebar */}
               <div className="space-y-6">
                 {/* Level Progress */}
-                <Card className="border-amber-200 bg-amber-50/30">
+                <Card className="border-amber-600/20 bg-amber-600/5">
                   <CardHeader>
                     <CardTitle className="text-lg">Level Progress</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-center mb-4">
-                      <Trophy className="w-12 h-12 text-amber-600 mx-auto mb-2" />
-                      <p className="text-4xl font-bold text-amber-600">12</p>
+                      <Trophy className="w-12 h-12 text-amber-600 dark:text-amber-500 mx-auto mb-2" />
+                      <p className="text-4xl font-bold text-amber-600 dark:text-amber-500">12</p>
                       <p className="text-sm text-muted-foreground mt-1">Gold Member</p>
                     </div>
                     <Progress value={65} className="mb-3 h-2" />
@@ -341,7 +342,7 @@ export default function Gamification() {
                 </Card>
 
                 {/* Badges */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Recent Badges</CardTitle>
                   </CardHeader>
@@ -363,7 +364,7 @@ export default function Gamification() {
                 </Card>
 
                 {/* Rewards Shop */}
-                <Card className="border-pink-200 bg-pink-50/30">
+                <Card className="border-pink-600/20 bg-pink-600/5">
                   <CardHeader>
                     <CardTitle className="text-lg">Rewards Shop</CardTitle>
                   </CardHeader>
@@ -388,7 +389,7 @@ export default function Gamification() {
                 </Card>
 
                 {/* Leaderboard Preview */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle className="text-lg">Leaderboard</CardTitle>
                   </CardHeader>
@@ -401,7 +402,7 @@ export default function Gamification() {
                       <div
                         key={user.rank}
                         className={`p-2 rounded border flex items-center justify-between ${
-                          user.highlighted ? "bg-blue-50 border-blue-200" : ""
+                          user.highlighted ? "bg-card border-primary/20" : ""
                         }`}
                       >
                         <div className="flex items-center gap-2">

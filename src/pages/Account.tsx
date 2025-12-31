@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { badgeColors, getBadgeColor } from "@/lib/colors";
 import { 
   Lock, 
   Shield, 
@@ -99,7 +100,7 @@ export default function Account() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-4xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -222,13 +223,13 @@ export default function Account() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2">
                             <p className="font-semibold">{session.device}</p>
-                            {session.isCurrent && <Badge className="bg-blue-100 text-blue-800">Current</Badge>}
+                            {session.isCurrent && <Badge className={badgeColors.info}>Current</Badge>}
                           </div>
                           <p className="text-sm text-muted-foreground">{session.location}</p>
                           <p className="text-xs text-muted-foreground">Last active: {session.lastActive}</p>
                         </div>
                         {!session.isCurrent && (
-                          <Button variant="ghost" size="sm" className="text-red-600 hover:text-red-700">
+                          <Button variant="ghost" size="sm" className="text-destructive dark:text-red-400 hover:text-red-700">
                             Remove
                           </Button>
                         )}
@@ -259,7 +260,7 @@ export default function Account() {
                               <Smartphone className="h-4 w-4" />
                               <p className="font-semibold">{session.device}</p>
                               {session.isCurrent && (
-                                <Badge className="bg-blue-100 text-blue-800">Current</Badge>
+                                <Badge className={badgeColors.info}>Current</Badge>
                               )}
                             </div>
                             <div className="space-y-1 text-sm text-muted-foreground">
@@ -337,25 +338,25 @@ export default function Account() {
                   </AlertDescription>
                 </Alert>
 
-                <Card className="border-red-200">
+                <Card className="border-destructive/20">
                   <CardHeader>
-                    <CardTitle className="text-red-600">Deactivate Account</CardTitle>
+                    <CardTitle className="text-destructive dark:text-red-400">Deactivate Account</CardTitle>
                     <CardDescription>Temporarily disable your account</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-muted-foreground">
                       You can reactivate your account anytime by logging back in. Your data will be preserved.
                     </p>
-                    <Button variant="outline" className="w-full border-orange-500 text-orange-600 hover:bg-orange-50">
+                    <Button variant="outline" className="w-full border-amber-600 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950">
                       <Clock className="mr-2 h-4 w-4" />
                       Deactivate Account
                     </Button>
                   </CardContent>
                 </Card>
 
-                <Card className="border-red-200">
+                <Card className="border-destructive/20">
                   <CardHeader>
-                    <CardTitle className="text-red-600">Delete Account</CardTitle>
+                    <CardTitle className="text-destructive dark:text-red-400">Delete Account</CardTitle>
                     <CardDescription>Permanently delete your account and all data</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">

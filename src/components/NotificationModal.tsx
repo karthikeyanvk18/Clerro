@@ -18,6 +18,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { badgeColors, getBadgeColor } from "@/lib/colors";
 
 interface Notification {
   id: string;
@@ -110,16 +111,12 @@ export function NotificationModal({ isOpen, onClose }: NotificationModalProps) {
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   const getTypeColor = (type: string) => {
-    switch (type) {
-      case "success":
-        return "bg-emerald/10 text-emerald";
-      case "warning":
-        return "bg-yellow-500/10 text-yellow-600";
-      case "milestone":
-        return "bg-purple-500/10 text-purple-600";
-      default:
-        return "bg-blue-500/10 text-blue-600";
-    }
+    const typeMap: Record<string, string> = {
+      success: badgeColors.success,
+      warning: badgeColors.warning,
+      milestone: badgeColors.info,
+    };
+    return typeMap[type] || badgeColors.info;
   };
 
   const getTypeIcon = (notification: Notification) => {

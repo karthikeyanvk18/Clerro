@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { amountColors } from "@/lib/colors";
 import {
   CreditCard,
   Building2,
@@ -42,34 +43,34 @@ export default function BankSync() {
           </div>
 
           {/* Connected Banks */}
-          <Card>
+          <Card className="dark:bg-[rgb(4,35,51)]\">
             <CardHeader>
               <CardTitle className="text-lg">Connected Banks</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="p-3 rounded-lg border border-green-200 bg-green-50 flex items-center justify-between">
+            <CardContent className="space-y-3\">"
+              <div className="p-3 rounded-lg border border-primary/20 bg-card/50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Building2 className="w-5 h-5 text-green-600" />
+                  <Building2 className="w-5 h-5 text-primary" />
                   <div>
                     <p className="font-medium text-sm">HDFC Bank</p>
                     <p className="text-xs text-muted-foreground">****1234</p>
                   </div>
                 </div>
-                <CheckCircle className="w-5 h-5 text-green-600" />
+                <CheckCircle className="w-5 h-5 text-primary" />
               </div>
 
-              <div className="p-3 rounded-lg border border-green-200 bg-green-50 flex items-center justify-between">
+              <div className="p-3 rounded-lg border border-primary/20 bg-card/50 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <Building2 className="w-5 h-5 text-green-600" />
+                  <Building2 className="w-5 h-5 text-primary" />
                   <div>
                     <p className="font-medium text-sm">ICICI Bank</p>
                     <p className="text-xs text-muted-foreground">****5678</p>
                   </div>
                 </div>
-                <CheckCircle className="w-5 h-5 text-green-600" />
+                <CheckCircle className="w-5 h-5 text-primary" />
               </div>
 
-              <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
+              <Button className="w-full mt-4">
                 <Plus className="w-4 h-4 mr-2" />
                 Connect New Bank
               </Button>
@@ -113,7 +114,7 @@ export default function BankSync() {
                     <p className="font-medium">{tx.name}</p>
                     <Badge variant="secondary" className="text-xs mt-1">{tx.type}</Badge>
                   </div>
-                  <span className={tx.amount.startsWith("+") ? "text-green-600" : "text-red-600"}>
+                  <span className={tx.amount.startsWith("+") ? amountColors.positive : amountColors.negative}>
                     {tx.amount}
                   </span>
                 </div>
@@ -134,7 +135,7 @@ export default function BankSync() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             {/* Header */}
             <motion.div
@@ -149,7 +150,7 @@ export default function BankSync() {
             </motion.div>
 
             {/* Security Banner */}
-            <Alert className="mb-6 bg-blue-50 border-blue-200">
+            <Alert className="mb-6 bg-card border-primary/20">
               <Lock className="h-4 w-4" />
               <AlertDescription>
                 Your bank connection uses industry-standard encryption (TLS 1.2+). We never store passwords.
@@ -176,11 +177,11 @@ export default function BankSync() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
-                        className="p-4 rounded-lg border border-green-200 bg-gradient-to-r from-green-50 to-transparent flex items-center justify-between"
+                        className="p-4 rounded-lg border bg-card/50 border-primary/20 flex items-center justify-between"
                       >
                         <div className="flex items-center gap-4 flex-1">
-                          <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-                            <Building2 className="w-6 h-6 text-blue-600" />
+                          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                            <Building2 className="w-6 h-6 text-primary" />
                           </div>
                           <div className="flex-1">
                             <h3 className="font-semibold">{bank.name}</h3>
@@ -202,7 +203,7 @@ export default function BankSync() {
                       </motion.div>
                     ))}
 
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 mt-4">
+                    <Button className="w-full mt-4">
                       <Plus className="w-4 h-4 mr-2" />
                       Connect New Bank Account
                     </Button>
@@ -210,7 +211,7 @@ export default function BankSync() {
                 </Card>
 
                 {/* Integration Options */}
-                <Card>
+                <Card className="dark:bg-[rgb(4,35,51)]">
                   <CardHeader>
                     <CardTitle>Available Integrations</CardTitle>
                     <CardDescription>Choose how to connect your bank</CardDescription>
@@ -276,16 +277,16 @@ export default function BankSync() {
                         <div key={i} className="flex items-center justify-between text-sm">
                           <span>{item.bank}</span>
                           {item.status === "Synced" ? (
-                            <CheckCircle className="w-4 h-4 text-green-600" />
+                            <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-500" />
                           ) : (
                             <div className="animate-spin">
-                              <Zap className="w-4 h-4 text-blue-600" />
+                              <Zap className="w-4 h-4 text-primary dark:text-primary/80" />
                             </div>
                           )}
                         </div>
                       ))}
                     </div>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 mt-4">
+                    <Button className="w-full mt-4">
                       Sync All Now
                     </Button>
                   </CardContent>
@@ -297,7 +298,7 @@ export default function BankSync() {
                     <CardTitle>Auto-Categorization</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
-                    <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <div className="p-3 bg-card border border-primary/20 rounded-lg">
                       <p className="text-sm font-medium">Enabled</p>
                       <p className="text-xs text-muted-foreground mt-1">
                         Using AI to auto-categorize transactions
@@ -324,15 +325,15 @@ export default function BankSync() {
                   <CardContent className="space-y-3">
                     <div>
                       <p className="text-xs text-muted-foreground">Total Income</p>
-                      <p className="text-2xl font-bold text-green-600">₹1,25,000</p>
+                      <p className={`text-2xl font-bold ${amountColors.positive}`}>₹1,25,000</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Total Expenses</p>
-                      <p className="text-2xl font-bold text-red-600">₹47,230</p>
+                      <p className={`text-2xl font-bold ${amountColors.negative}`}>₹47,230</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">Net Savings</p>
-                      <p className="text-2xl font-bold text-blue-600">₹77,770</p>
+                      <p className="text-2xl font-bold text-primary\">₹77,770</p>
                     </div>
                   </CardContent>
                 </Card>

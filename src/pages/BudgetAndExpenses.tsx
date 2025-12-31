@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, TrendingUp, Wallet, PieChart, Target } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as PieChartComponent, Pie, Cell } from "recharts";
+import { amountColors, progressColors } from "@/lib/colors";
 
 // Budget Data
 const monthlyBudgetData = [
@@ -65,7 +66,7 @@ const recentTransactions = [
 
 export default function BudgetAndExpenses() {
   const { isSidebarOpen, toggleSidebar, setIsSidebarOpen } = useSidebar();
-  const [activeTab, setActiveTab] = useState("budget");
+  const [activeTab, setActiveTab] = useState("overview");
   const isMobile = useIsMobile();
 
   if (isMobile) {
@@ -111,7 +112,7 @@ export default function BudgetAndExpenses() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
@@ -280,7 +281,7 @@ export default function BudgetAndExpenses() {
                           <div className="w-full bg-muted rounded-full h-2">
                             <div
                               className={`h-2 rounded-full transition-all ${
-                                category.percentage > 100 ? "bg-red-500" : "bg-green-500"
+                                category.percentage > 100 ? "bg-red-500 dark:bg-red-600" : "bg-green-500 dark:bg-green-600"
                               }`}
                               style={{ width: `${Math.min(category.percentage, 100)}%` }}
                             />
@@ -313,7 +314,7 @@ export default function BudgetAndExpenses() {
                             <p className="text-xs text-muted-foreground">{transaction.category}</p>
                           </div>
                           <div className="text-right">
-                            <p className={`font-semibold ${transaction.type === "income" ? "text-green-600" : "text-red-600"}`}>
+                            <p className={`font-semibold ${transaction.type === "income" ? amountColors.positive : amountColors.negative}`}>
                               {transaction.type === "income" ? "+" : "-"}₹{transaction.amount.toLocaleString()}
                             </p>
                             <p className="text-xs text-muted-foreground">{transaction.date}</p>

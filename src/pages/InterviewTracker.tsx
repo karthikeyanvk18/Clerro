@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { badgeColors } from "@/lib/colors";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Briefcase,
@@ -50,7 +51,7 @@ export default function InterviewTracker() {
             <Card>
               <CardContent className="pt-4">
                 <p className="text-xs text-muted-foreground">Upcoming</p>
-                <p className="text-xl font-bold text-blue-600">3</p>
+                <p className="text-xl font-bold text-primary">3</p>
               </CardContent>
             </Card>
           </div>
@@ -73,7 +74,7 @@ export default function InterviewTracker() {
           </div>
 
           {/* Pipeline Tabs */}
-          <Button className="w-full bg-blue-600">
+          <Button className="w-full">
             <Plus className="w-4 h-4 mr-1" />
             New Application
           </Button>
@@ -89,7 +90,7 @@ export default function InterviewTracker() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Interview & Application Tracker</h1>
@@ -99,8 +100,8 @@ export default function InterviewTracker() {
             </motion.div>
 
             {/* Upcoming Alert */}
-            <Alert className="mb-6 bg-blue-50 border-blue-200">
-              <Bell className="h-4 w-4 text-blue-600" />
+            <Alert className="mb-6 bg-card border-primary/20">
+              <Bell className="h-4 w-4 text-primary" />
               <AlertDescription>
                 <strong>Upcoming Interview:</strong> TechCorp on Dec 2, 2024 at 2:00 PM - Don't
                 forget to prepare!
@@ -183,7 +184,7 @@ export default function InterviewTracker() {
               ].map((pipeline, i) => (
                 <Card
                   key={pipeline.status}
-                  className={`border-${pipeline.color}-200 bg-${pipeline.color}-50/30`}
+                  className={`border-${pipeline.color}-200 dark:bg-[rgb(4,35,51)]`}
                 >
                   <CardHeader>
                     <div className="flex items-center justify-between">
@@ -193,7 +194,7 @@ export default function InterviewTracker() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     {pipeline.items.slice(0, 2).map((item, idx) => (
-                      <div key={idx} className="p-3 rounded-lg border bg-white">
+                      <div key={idx} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                         <p className="font-semibold text-sm">{item.company}</p>
                         <p className="text-sm text-muted-foreground mb-2">
                           {item.role}
@@ -207,13 +208,13 @@ export default function InterviewTracker() {
                           </Button>
                         )}
                         {pipeline.status === "Interview" && (
-                          <Button size="sm" className="w-full bg-orange-600">
+                          <Button size="sm" className="w-full bg-amber-100 text-amber-900 hover:bg-amber-200 dark:bg-amber-900/30 dark:text-amber-300">
                             <Calendar className="w-4 h-4 mr-1" />
                             Schedule
                           </Button>
                         )}
                         {pipeline.status === "Offer" && (
-                          <Button size="sm" className="w-full bg-green-600">
+                          <Button size="sm" className="w-full bg-primary">
                             Accept Offer
                           </Button>
                         )}
@@ -232,7 +233,7 @@ export default function InterviewTracker() {
             {/* Interview Details */}
             <div className="grid gap-6 lg:grid-cols-2">
               {/* Upcoming Interviews */}
-              <Card className="border-blue-200 bg-blue-50/30">
+              <Card className="border-primary/20 bg-card/50">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -242,7 +243,7 @@ export default function InterviewTracker() {
                         <CardDescription>Next 30 days</CardDescription>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-blue-600">
+                    <Button size="sm" className="">
                       <Plus className="w-4 h-4 mr-1" />
                       Schedule
                     </Button>
@@ -278,7 +279,7 @@ export default function InterviewTracker() {
                       email: "mike@financeai.com",
                     },
                   ].map((interview, i) => (
-                    <div key={i} className="p-4 rounded-lg border bg-white space-y-3">
+                    <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20 space-y-3">
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-semibold">{interview.company}</p>
@@ -318,17 +319,17 @@ export default function InterviewTracker() {
               </Card>
 
               {/* Recruiter Contacts */}
-              <Card className="border-purple-200 bg-purple-50/30">
+              <Card className="border-primary/20 bg-card/50">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-purple-600" />
+                      <Users className="w-5 h-5 text-primary" />
                       <div>
                         <CardTitle>Recruiter Contacts</CardTitle>
                         <CardDescription>Active recruiters and HR managers</CardDescription>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-purple-600">
+                    <Button size="sm" className="bg-primary">
                       <Plus className="w-4 h-4 mr-1" />
                       Add
                     </Button>
@@ -361,7 +362,7 @@ export default function InterviewTracker() {
                       lastContact: "Nov 25",
                     },
                   ].map((contact, i) => (
-                    <div key={i} className="p-4 rounded-lg border bg-white space-y-2">
+                    <div key={i} className="p-4 rounded-lg border bg-card/50 border-primary/20 space-y-2">
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-semibold">{contact.name}</p>
@@ -402,17 +403,17 @@ export default function InterviewTracker() {
             </div>
 
             {/* Interview Preparation */}
-            <Card className="mt-6 border-green-200 bg-green-50/30">
+            <Card className="mt-6 border-primary/20 dark:bg-[rgb(4,35,51)]">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <CheckCircle className="w-5 h-5 text-primary" />
                     <div>
                       <CardTitle>Interview Preparation</CardTitle>
                       <CardDescription>For your upcoming interviews</CardDescription>
                     </div>
                   </div>
-                  <Button className="bg-green-600">
+                  <Button className="bg-primary">
                     <Plus className="w-4 h-4 mr-1" />
                     Add Notes
                   </Button>
@@ -441,7 +442,7 @@ export default function InterviewTracker() {
                       items: ["Project Brief Review", "API Design", "Code Quality Checklist"],
                     },
                   ].map((prep, i) => (
-                    <div key={i} className="p-4 rounded-lg border bg-white">
+                    <div key={i} className="p-4 rounded-lg border bg-card/50 dark:bg-[rgb(6,43,63)] border-primary/20">
                       <p className="font-semibold mb-1">{prep.company}</p>
                       <p className="text-sm text-muted-foreground mb-3">{prep.title}</p>
                       <ul className="space-y-1">

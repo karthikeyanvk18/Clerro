@@ -127,11 +127,11 @@ export default function Notifications() {
       case "success":
         return "bg-emerald/10 text-emerald";
       case "warning":
-        return "bg-yellow-500/10 text-yellow-600";
+        return "bg-yellow-500/10 text-yellow-600 dark:bg-yellow-500/20 dark:text-yellow-400";
       case "milestone":
-        return "bg-purple-500/10 text-purple-600";
+        return "bg-purple-500/10 text-purple-600 dark:bg-purple-500/20 dark:text-purple-400";
       default:
-        return "bg-blue-500/10 text-blue-600";
+        return "bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400";
     }
   };
 
@@ -342,8 +342,8 @@ export default function Notifications() {
             {/* Push Notifications */}
             <Card className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-blue-500/10">
-                  <Bell className="h-5 w-5 text-blue-600" />
+                <div className="p-2 rounded-lg bg-blue-500/10 dark:bg-blue-500/20">
+                  <Bell className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
                   <p className="font-semibold text-sm">Push Notifications</p>

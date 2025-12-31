@@ -68,10 +68,10 @@ export default function GoalDetail() {
 
         <div className="px-4 py-4 space-y-4">
           {/* Goal Card */}
-          <Card className="p-4 bg-gradient-to-br from-purple/10 to-pink/10">
+          <Card className="p-4 bg-gradient-to-br from-primary/10 to-pink/10">
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-muted-foreground">Target Amount</span>
-              <Badge className="bg-purple-500">{goal.priority}</Badge>
+              <Badge className="bg-primary">{goal.priority}</Badge>
             </div>
             <p className="text-2xl font-bold">₹{goal.targetAmount.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground mt-1">Target Date: {goal.targetDate}</p>
@@ -103,7 +103,7 @@ export default function GoalDetail() {
                 <p className="text-xs text-muted-foreground">Status</p>
                 <p className="font-semibold">{goal.status}</p>
               </div>
-              <Badge className="bg-blue-500">In Progress</Badge>
+              <Badge className="bg-primary dark:bg-primary">In Progress</Badge>
             </div>
 
             <div className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
@@ -193,7 +193,7 @@ export default function GoalDetail() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
               <Button variant="ghost" onClick={() => navigate("/goals")} className="mb-4">
@@ -254,7 +254,7 @@ export default function GoalDetail() {
                     </div>
                     <div className="p-4 bg-secondary/50 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-1">Status</p>
-                      <Badge className="bg-blue-500">{goal.status}</Badge>
+                      <Badge className="bg-blue-600 dark:bg-blue-500">{goal.status}</Badge>
                     </div>
                     <div className="p-4 bg-secondary/50 rounded-lg">
                       <p className="text-sm text-muted-foreground mb-1">Monthly Contribution</p>

@@ -80,7 +80,7 @@ export default function Investments() {
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 pt-16">
           <div className="mx-auto max-w-7xl">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
               <h1 className="text-4xl font-bold">Investments & Wealth Building</h1>
@@ -122,7 +122,7 @@ export default function Investments() {
             {/* Investment Categories */}
             <div className="grid gap-6 lg:grid-cols-2 mb-6">
               {/* Mutual Funds & SIP */}
-              <Card>
+              <Card className="dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -144,7 +144,7 @@ export default function Investments() {
                     { name: "HDFC Mid-cap Plus", monthly: "₹7,000", value: "₹1,23,456", return: "+18.2%" },
                     { name: "Vanguard Index Fund", monthly: "₹3,000", value: "₹45,123", return: "+12.8%" },
                   ].map((fund, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-blue-50/30">
+                    <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium text-sm">{fund.name}</p>
@@ -162,7 +162,7 @@ export default function Investments() {
               </Card>
 
               {/* Direct Stocks */}
-              <Card>
+              <Card className="dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -184,7 +184,7 @@ export default function Investments() {
                     { symbol: "INFY", shares: 15, value: "₹54,320", return: "+5.6%" },
                     { symbol: "RELIANCE", shares: 5, value: "₹23,465", return: "+12.3%" },
                   ].map((stock, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-green-50/30">
+                    <div key={i} className="p-3 rounded-lg border bg-card/50 border-primary/20">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <p className="font-medium text-sm">{stock.symbol}</p>
@@ -202,7 +202,7 @@ export default function Investments() {
             {/* Retirement & Gold */}
             <div className="grid gap-6 lg:grid-cols-2">
               {/* Retirement Planning */}
-              <Card>
+              <Card className="dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Landmark className="w-5 h-5 text-purple-600" />
@@ -217,7 +217,7 @@ export default function Investments() {
                     { name: "NPS Tier-1", value: "₹2,34,567", contribution: "₹5,000/month" },
                     { name: "EPF", value: "₹8,90,456", contribution: "₹18,750/month (auto)" },
                   ].map((plan, i) => (
-                    <div key={i} className="p-3 rounded-lg border bg-purple-50/30">
+                    <div key={i} className="p-3 rounded-lg border bg-purple-50/30 dark:bg-[rgb(6,43,63)] border-primary/20">
                       <p className="font-medium text-sm">{plan.name}</p>
                       <p className="text-lg font-bold mt-2">{plan.value}</p>
                       <p className="text-xs text-muted-foreground mt-1">{plan.contribution}</p>
@@ -237,7 +237,7 @@ export default function Investments() {
               </Card>
 
               {/* Gold Investment */}
-              <Card>
+              <Card className="dark:bg-[rgb(4,35,51)]">
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Coins className="w-5 h-5 text-amber-600" />

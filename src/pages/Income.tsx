@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Briefcase, DollarSign, TrendingUp, Calendar } from "lucide-react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { categoryColors } from "@/lib/colors";
 
 const incomeData = [
   { month: "Jan", salary: 102000, bonus: 0, freelance: 8000 },
@@ -95,20 +96,14 @@ export default function Income() {
   const averageMonthlyIncome = ytdIncome / 3; // Based on 3 months
 
   const getTypeColor = (type: string) => {
-    switch (type) {
-      case "salary":
-        return "bg-blue-100 text-blue-800";
-      case "freelance":
-        return "bg-purple-100 text-purple-800";
-      case "rental":
-        return "bg-emerald-100 text-emerald-800";
-      case "investment":
-        return "bg-amber-100 text-amber-800";
-      case "bonus":
-        return "bg-pink-100 text-pink-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
+    const incomeTypeMap: Record<string, string> = {
+      salary: categoryColors.salary,
+      freelance: categoryColors.freelance,
+      rental: categoryColors.rental,
+      investment: categoryColors.investment,
+      bonus: categoryColors.bonus,
+    };
+    return incomeTypeMap[type] || "bg-muted text-muted-foreground";
   };
 
   if (isMobile) {
@@ -144,12 +139,12 @@ export default function Income() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onMenuToggle={() => toggleSidebar()} />
+      <Header onMenuToggle={() => setIsSidebarOpen(!isSidebarOpen)} />
 
       <div className="flex">
         <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-        <main className="flex-1 p-4 lg:p-6">
+        <main className="flex-1 p-4 lg:p-6 pt-16">
           <div className="mx-auto max-w-7xl space-y-6">
             {/* Header Section */}
             <motion.div
