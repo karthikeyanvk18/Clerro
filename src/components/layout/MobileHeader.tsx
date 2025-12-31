@@ -7,7 +7,7 @@ interface MobileHeaderProps {
   userName?: string;
 }
 
-export function MobileHeader({ userName = "Arjun" }: MobileHeaderProps) {
+export function MobileHeader({ userName = "Karthi" }: MobileHeaderProps) {
   const [isDark, setIsDark] = useState(false);
   const [hasNotifications] = useState(true);
 

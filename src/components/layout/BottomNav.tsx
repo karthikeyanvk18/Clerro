@@ -1,24 +1,31 @@
 import { motion } from "framer-motion";
-import { LayoutDashboard, Bot, CreditCard, PieChart, User } from "lucide-react";
+import { LayoutDashboard, Bot, CreditCard, TrendingUp, MoreVertical, Briefcase, Building2, Brain, FileText, Trophy, Shield, ShoppingCart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AllOptionsMenu } from "@/components/AllOptionsMenu";
 
 interface NavItem {
   icon: React.ElementType;
   label: string;
   href: string;
-  isActive?: boolean;
   badge?: number;
 }
 
 const navItems: NavItem[] = [
-  { icon: LayoutDashboard, label: "Home", href: "/", isActive: true },
+  { icon: LayoutDashboard, label: "Home", href: "/dashboard" },
   { icon: Bot, label: "Coach", href: "/coach", badge: 3 },
-  { icon: CreditCard, label: "Accounts", href: "/accounts" },
-  { icon: PieChart, label: "Reports", href: "/reports" },
-  { icon: User, label: "More", href: "/more" },
+  { icon: TrendingUp, label: "Investments", href: "/investments" },
+  { icon: Building2, label: "Bank", href: "/bank-sync" },
+  { icon: Trophy, label: "Rewards", href: "/gamification" },
+  { icon: FileText, label: "Resume", href: "/resume" },
+  { icon: Shield, label: "Vault", href: "/vault" },
+  { icon: ShoppingCart, label: "Market", href: "/marketplace" },
 ];
 
 export function BottomNav() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <motion.nav
       initial={{ y: 100 }}
@@ -29,13 +36,15 @@ export function BottomNav() {
       <div className="flex items-center justify-around px-2 py-1.5 safe-area-pb">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isActive = location.pathname === item.href;
+          
           return (
-            <a
+            <button
               key={item.href}
-              href={item.href}
+              onClick={() => navigate(item.href)}
               className={cn(
                 "relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-colors",
-                item.isActive
+                isActive
                   ? "text-emerald"
                   : "text-muted-foreground"
               )}
@@ -49,15 +58,17 @@ export function BottomNav() {
                 )}
               </div>
               <span className="text-[10px] font-medium">{item.label}</span>
-              {item.isActive && (
+              {isActive && (
                 <motion.div
                   layoutId="activeTab"
                   className="absolute -bottom-1.5 h-0.5 w-6 rounded-full bg-emerald"
                 />
               )}
-            </a>
+            </button>
           );
         })}
+        
+        <AllOptionsMenu />
       </div>
     </motion.nav>
   );

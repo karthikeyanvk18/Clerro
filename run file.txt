@@ -1,0 +1,3 @@
+
+PS C:\Users\HP\Desktop\cleero-financial-compass> npm run build 2>&1 | Select-Object -First 100 
+PS C:\Users\HP\Desktop\cleero-financial-compass> npm run dev

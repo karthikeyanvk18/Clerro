@@ -10,7 +10,7 @@ interface HeaderProps {
   onMenuToggle?: () => void;
 }
 
-export function Header({ userName = "Arjun", className, onMenuToggle }: HeaderProps) {
+export function Header({ userName = "Karthi", className, onMenuToggle }: HeaderProps) {
   const [isDark, setIsDark] = useState(false);
   const [hasNotifications] = useState(true);
 
@@ -61,7 +61,7 @@ export function Header({ userName = "Arjun", className, onMenuToggle }: HeaderPr
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 lg:gap-4">
           <Button variant="ghost" size="icon-sm" onClick={toggleTheme}>
             {isDark ? (
               <Sun className="h-5 w-5" />
@@ -77,12 +77,16 @@ export function Header({ userName = "Arjun", className, onMenuToggle }: HeaderPr
             )}
           </Button>
 
-          <div className="ml-2 flex items-center gap-3">
+          <div className="ml-2 flex items-center gap-2 lg:gap-3">
             <div className="hidden text-right sm:block">
               <p className="text-body-sm font-medium">Hi, {userName}</p>
               <p className="text-caption text-muted-foreground">Pro Member</p>
             </div>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full h-9 w-9 p-0 shrink-0"
+            >
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald to-emerald/70">
                 <User className="h-5 w-5 text-primary-foreground" />
               </div>
